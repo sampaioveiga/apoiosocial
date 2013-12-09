@@ -1,0 +1,13 @@
+<% provide(:title, "Iniciar sessão") %>
+
+<h1>Iniciar sessão</h1>
+<div class="span6 offset3">
+	<%= form_tag sessions_path do %>
+		<%= label_tag :numero_mecanografico %>
+		<%= text_field_tag :numero_mecanografico %>
+		<%= label_tag :password %>
+		<%= password_field_tag :password %>
+		<%= submit_tag "Entrar", class: 'btn btn-success' %>
+		<%= link_to "Registar", signup_path, class: 'btn btn-link' %>
+	<% end %>
+</div>

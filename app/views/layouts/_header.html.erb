@@ -1,0 +1,13 @@
+<header class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="brand">
+			Apoio Social
+		</div>
+		<% if current_user %>
+			<ul class="nav pull-right">
+				<li><% current_user.nome %></li>
+				<li><%= link_to "Log out", logout_path %></li>
+			</ul>
+		<% end %>
+	</div>
+</header>
