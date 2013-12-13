@@ -11,7 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205145939) do
+ActiveRecord::Schema.define(version: 20131209152837) do
+
+  create_table "episodes", force: true do |t|
+    t.integer  "patient_id"
+    t.date     "data"
+    t.string   "servico_referenciador"
+    t.string   "primeiro_contacto"
+    t.string   "orientacao"
+    t.string   "observacoes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "episodes", ["patient_id"], name: "index_episodes_on_patient_id"
+
+  create_table "patients", force: true do |t|
+    t.string   "nome"
+    t.date     "data_de_nascimento"
+    t.string   "estado_civil"
+    t.string   "habilitacoes_literarios"
+    t.string   "residencia"
+    t.integer  "telefone"
+    t.string   "sistema_de_saude"
+    t.integer  "sistema_de_saude_numero"
+    t.integer  "cartao_de_cidadao"
+    t.integer  "numero_identificacao_fiscal"
+    t.string   "nome_contacto_preferencial"
+    t.integer  "telefone_contacto_preferencial"
+    t.string   "morada_contacto_preferencial"
+    t.integer  "telemovel_contacto_preferencial"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "nome"
@@ -23,5 +55,8 @@ ActiveRecord::Schema.define(version: 20131205145939) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["numero_mecanografico"], name: "index_users_on_numero_mecanografico", unique: true
 
 end

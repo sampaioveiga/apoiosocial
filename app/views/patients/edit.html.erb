@@ -1,0 +1,12 @@
+<% provide(:title, "Editar #{@patient.nome}") %>
+
+<h1>Editar <%= @patient.nome %></h1>
+<div class="span8 offset2">
+	<%= render 'form' %>
+</div>
+
+<script>
+	function goBack() {
+		window.history.back()
+	}
+</script>
