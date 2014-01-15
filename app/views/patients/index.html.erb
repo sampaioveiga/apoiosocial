@@ -1,0 +1,22 @@
+<% provide(:title, "Utentes") %>
+
+<h1>Utentes</h1>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<%= link_to "Novo utente", new_patient_path, class: 'btn btn-success' %>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @patients.each do |patient| %>
+					<tr>
+						<td><%= link_to patient.nome, patient %>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

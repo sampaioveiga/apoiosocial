@@ -1,0 +1,18 @@
+<%= form_for @subsystem do |f| %>
+	<% if @subsystem.errors.any? %>
+		<div class="error_explanation">
+			<h2>O formulário contém <%= pluralize(@subsystem.errors.count, "erro") %></h2>
+			<ul>
+				<% for message in @subsystem.errors.full_messages %>
+					<li><%= message %>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<%= f.label :nome %>
+	<%= f.text_field :nome %>
+
+	<%= f.submit "Guardar", class: 'btn btn-success' %>
+	<%= link_to "Cancelar", subsystems_path, class: 'btn' %>
+<% end %>

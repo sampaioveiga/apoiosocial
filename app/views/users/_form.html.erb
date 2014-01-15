@@ -17,7 +17,7 @@
 	<%= f.text_field :email %>
 	<%= f.label :password %>
 	<%= f.password_field :password %>
-	<%= f.label :password_confirmation %>
+	<%= f.label :password_confirmation, "Confirmação" %>
 	<%= f.password_field :password_confirmation %>
 	<%= f.submit "Registar", class: 'btn btn-success' %>
 	<%= link_to 'Cancelar', login_path, class: 'btn' %>

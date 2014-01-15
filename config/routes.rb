@@ -1,4 +1,5 @@
 ApoioSocial::Application.routes.draw do
+  resources :subsystems
   resources :patients do
     resources :episodes
   end

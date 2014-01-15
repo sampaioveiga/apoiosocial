@@ -1,8 +1,10 @@
 <% provide(:title, "Editar #{@patient.nome}") %>
 
 <h1>Editar <%= @patient.nome %></h1>
-<div class="span8 offset2">
-	<%= render 'form' %>
+<div class="row">
+	<div class="col-md-12 col-md-offset-0">
+		<%= render 'form' %>
+	</div>
 </div>
 
 <script>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209152837) do
+ActiveRecord::Schema.define(version: 20140113124323) do
 
   create_table "episodes", force: true do |t|
     t.integer  "patient_id"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20131209152837) do
     t.string   "habilitacoes_literarios"
     t.string   "residencia"
     t.integer  "telefone"
-    t.string   "sistema_de_saude"
+    t.integer  "subsystem_id",                    limit: 255
     t.integer  "sistema_de_saude_numero"
     t.integer  "cartao_de_cidadao"
     t.integer  "numero_identificacao_fiscal"
@@ -41,6 +41,12 @@ ActiveRecord::Schema.define(version: 20131209152837) do
     t.integer  "telefone_contacto_preferencial"
     t.string   "morada_contacto_preferencial"
     t.integer  "telemovel_contacto_preferencial"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subsystems", force: true do |t|
+    t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

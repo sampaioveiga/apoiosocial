@@ -18,7 +18,8 @@ end
 # Use SCSS for stylesheets
 gem 'sass-rails', '4.0.1'
 #gem 'fullcalendar-rails', '1.6.4.0'
-gem 'bootstrap-sass', '2.3.2.0'
+#gem 'bootstrap-sass', '2.3.2.0'
+gem 'bootstrap-sass', '3.0.3.0'
 gem 'will_paginate', '3.0.5'
 gem 'bootstrap-will_paginate', '0.0.10'
 
@@ -56,3 +57,6 @@ gem 'bcrypt-ruby', '3.1.2'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+#gem 'bootstrap-datetimepicker-rails', '0.0.11'
+gem 'bootstrap-datepicker-rails', '1.1.1.11'

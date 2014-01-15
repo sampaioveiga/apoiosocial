@@ -2,6 +2,10 @@ class PatientsController < ApplicationController
 	before_action :set_patient, except: [:index, :new, :create]
 	before_action :require_login
 
+	def index
+		@patients = Patient.order('nome')
+	end
+
 	def show
 	end
 
@@ -33,7 +37,7 @@ class PatientsController < ApplicationController
 
 	private
 		def patient_params
-			params.require(:patient).permit(:nome, :data_de_nascimento, :estado_civil, :habilitacoes_literarias, :residencia, :telefone, :sistema_de_saude, :sistema_de_saude_numero, :cartao_De_cidadao, :numero_identificacao_fiscal, :nome_contacto_preferencial, :telefone_contacto_preferencial, :morada_contacto_preferencial, :telemovel_contacto_preferencial)
+			params.require(:patient).permit(:nome, :data_de_nascimento, :estado_civil, :habilitacoes_literarias, :residencia, :telefone, :subsystem_id, :subsystem_number, :cartao_de_cidadao, :numero_identificacao_fiscal, :nome_contacto_preferencial, :telefone_contacto_preferencial, :morada_contacto_preferencial, :telemovel_contacto_preferencial)
 		end
 
 		def set_patient
