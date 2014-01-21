@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113124323) do
+ActiveRecord::Schema.define(version: 20140120152200) do
 
   create_table "episodes", force: true do |t|
     t.integer  "patient_id"
@@ -26,6 +26,51 @@ ActiveRecord::Schema.define(version: 20140113124323) do
 
   add_index "episodes", ["patient_id"], name: "index_episodes_on_patient_id"
 
+  create_table "finances", force: true do |t|
+    t.integer  "patient_id"
+    t.integer  "pension_id",     limit: 255
+    t.integer  "otherincome_id"
+    t.integer  "montante"
+    t.string   "observacoes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "habitationoccupations", force: true do |t|
+    t.string   "nome"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "habitations", force: true do |t|
+    t.integer  "patient_id"
+    t.integer  "habitationtype_id",       limit: 255
+    t.integer  "habitationoccupation_id", limit: 255
+    t.integer  "numero_quartos"
+    t.boolean  "sala"
+    t.boolean  "casa_de_banho"
+    t.boolean  "barreiras"
+    t.boolean  "agua_canalizada"
+    t.boolean  "electricidade"
+    t.boolean  "esgotos"
+    t.string   "estado_de_conservacao"
+    t.string   "observacoes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "habitationtypes", force: true do |t|
+    t.string   "nome"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "otherincomes", force: true do |t|
+    t.string   "nome"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "patients", force: true do |t|
     t.string   "nome"
     t.date     "data_de_nascimento"
@@ -34,13 +79,33 @@ ActiveRecord::Schema.define(version: 20140113124323) do
     t.string   "residencia"
     t.integer  "telefone"
     t.integer  "subsystem_id",                    limit: 255
-    t.integer  "sistema_de_saude_numero"
+    t.integer  "subsystem_number"
     t.integer  "cartao_de_cidadao"
     t.integer  "numero_identificacao_fiscal"
     t.string   "nome_contacto_preferencial"
     t.integer  "telefone_contacto_preferencial"
     t.string   "morada_contacto_preferencial"
     t.integer  "telemovel_contacto_preferencial"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "patientshomes", force: true do |t|
+    t.integer  "patient_id"
+    t.string   "tipo_habitacao"
+    t.string   "regime_de_ocupacao"
+    t.string   "divisoes"
+    t.string   "conforto_salubridade"
+    t.string   "estado_de_conservacao"
+    t.string   "observacoes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "patientshomes", ["patient_id"], name: "index_patientshomes_on_patient_id"
+
+  create_table "pensions", force: true do |t|
+    t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

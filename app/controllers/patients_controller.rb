@@ -35,6 +35,13 @@ class PatientsController < ApplicationController
 		end
 	end
 
+	def destroy
+		#if @patient.episodios is empty
+		#then destroy
+		#else inform cannot destroy
+		redirect_to patients_path
+	end
+
 	private
 		def patient_params
 			params.require(:patient).permit(:nome, :data_de_nascimento, :estado_civil, :habilitacoes_literarias, :residencia, :telefone, :subsystem_id, :subsystem_number, :cartao_de_cidadao, :numero_identificacao_fiscal, :nome_contacto_preferencial, :telefone_contacto_preferencial, :morada_contacto_preferencial, :telemovel_contacto_preferencial)

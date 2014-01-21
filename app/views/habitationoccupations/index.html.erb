@@ -1,0 +1,22 @@
+<% provide(:title, "Regimes de ocupação") %>
+
+<h1>Regimes de Ocupação</h1>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<%= link_to "Novo regime de ocupação", new_habitationoccupation_path, class: 'btn btn-success' %>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @habitationoccupations.each do |habitationoccupation| %>
+					<tr>
+						<td><%= link_to habitationoccupation.nome, edit_habitationoccupation_path(habitationoccupation) %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

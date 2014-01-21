@@ -1,7 +1,13 @@
 ApoioSocial::Application.routes.draw do
   resources :subsystems
+  resources :habitationtypes
+  resources :habitationoccupations
+  resources :otherincomes
+  resources :pensions
   resources :patients do
     resources :episodes
+    resources :habitations
+    resources :finances
   end
   resources :users,       except: [ :destroy ]
   resources :sessions,    except: [ :edit, :update ]

@@ -32,22 +32,34 @@
 		<div class="col-md-10">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#episodios" data-toggle="tab">Episódios</a></li>
-			<li><a href="#situacaosaude" data-toggle="tab">Situação de Saúde</a></li>
-			<li><a href="#agregadofamiliar" data-toggle="tab">Agregado Familiar</a></li>
-			<li><a href="#situacaofamiliar" data-toggle="tab">Situação Habitacional</a></li>
-			<li><a href="#situacaoeconomica" data-toggle="tab">Situação Económica</a></li>
-			<li><a href="#situacaosociofamiliar" data-toggle="tab">Situação Sócio-familiar</a></li>
+			<!--<li><a href="#situacaoSaude" data-toggle="tab">Situação de Saúde</a></li>-->
+			<li><a href="#agregadoFamiliar" data-toggle="tab">Agregado Familiar</a></li>
+			<li><a href="#situacaoHabitacional" data-toggle="tab">Situação Habitacional</a></li>
+			<li><a href="#situacaoEconomica" data-toggle="tab">Situação Económica</a></li>
+			<li><a href="#situacaoSocioFamiliar" data-toggle="tab">Situação Sócio-familiar</a></li>
 		</ul>
 
 		<div class="tab-content">
 			<div class="tab-pane active" id="episodios">
 				1<%= render 'layouts/ipsum' %>
 			</div>
-			<div class="tab-pane" id="situacaosaude">2<%= render 'layouts/ipsum' %></div>
-			<div class="tab-pane" id="agregadofamiliar">3<%= render 'layouts/ipsum' %></div>
-			<div class="tab-pane" id="situacaofamiliar">4<%= render 'layouts/ipsum' %></div>
-			<div class="tab-pane" id="situacaoeconomica">5<%= render 'layouts/ipsum' %></div>
-			<div class="tab-pane" id="situacaosociofamiliar">6<%= render 'layouts/ipsum' %></div>
+			<!--<div class="tab-pane" id="situacaoSaude">2<%= render 'layouts/ipsum' %></div>-->
+			<div class="tab-pane" id="agregadoFamiliar">3<%= render 'layouts/ipsum' %></div>
+			<div class="tab-pane" id="situacaoHabitacional">
+				<% if @patient.habitation.nil? %>
+					<%= render 'habitations/new' %>
+				<% else %>
+					<%= render 'habitations/show' %>
+				<% end %>
+			</div>
+			<div class="tab-pane" id="situacaoEconomica">
+				<% if @patient.finance.nil? %>
+					<%= render 'finances/new' %>
+				<% else %>
+					<%= render 'finances/show' %>
+				<% end %>	
+			</div>
+			<div class="tab-pane" id="situacaoSocioFamiliar">6<%= render 'layouts/ipsum' %></div>
 		</div>
 	</div>
 </div>

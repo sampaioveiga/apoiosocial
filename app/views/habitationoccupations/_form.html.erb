@@ -1,0 +1,7 @@
+<%= form_for @habitationoccupation do |f| %>
+	<%= f.label :nome %>
+	<%= f.text_field :nome %>
+
+	<%= f.submit "Guardar", class: 'btn btn-success' %>
+	<%= link_to "Cancelar", habitationoccupations_path %>
+<% end %>

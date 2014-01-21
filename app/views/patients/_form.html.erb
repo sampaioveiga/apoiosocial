@@ -9,85 +9,50 @@
 			</ul>
 		</div>
 	<% end %>
-
-	<ul class="nav nav-tabs">
-		<li class="active"><a href="#identificacao" data-toggle="tab">Identificação</a></li>
-		<li><a href="#situacaosaude" data-toggle="tab">Situação de Saúde</a></li>
-		<li><a href="#agregadofamiliar" data-toggle="tab">Agregado Familiar</a></li>
-		<li><a href="#situacaofamiliar" data-toggle="tab">Situação Habitacional</a></li>
-		<li><a href="#situacaoeconomica" data-toggle="tab">Situação Económica</a></li>
-		<li><a href="#situacaosociofamiliar" data-toggle="tab">Situação Sócio-familiar</a></li>
-	</ul>
-
-	<div class="tab-content">
-		<div class="tab-pane active" id="identificacao">
-			<%= f.label :nome %>
-			<%= f.text_field :nome %>
-			<%= f.label :data_de_nascimento %><br />
-			<%= f.date_select :data_de_nascimento %><br />
-			<!--<div id="datetimepicker1" class="input-append date">
-				<input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
-				<span class="add-on">
-					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-				</span>
-			</div>-->
-			<%= f.label :estado_civil %>
-			<%= f.text_field :estado_civil %>
-			<%= f.label :residencia %>
-			<%= f.text_field :residencia %>
-			<%= f.label :telefone %>
-			<%= f.text_field :telefone %>
-			<%= f.label :subsystem_id %>
-			<%= link_to "[mais]", subsystems_path %>
-			<div class="row">
-				<div class="col-xs-2">
-					<%= f.collection_select :subsystem_id, Subsystem.order('nome'), :id, :nome, include_blank: true %>
-				</div>
-				<div class="col-xs-10">
-					<% f.label :subsystem_number %>
-					<%= f.text_field :subsystem_number, placeholder: 'Número' %>
-				</div>
-			</div>
-			<%= f.label :cartao_de_cidadao %>
-			<%= f.text_field :cartao_de_cidadao %>
-			<%= f.label :numero_identificacao_fiscal %>
-			<%= f.text_field :numero_identificacao_fiscal %>
-			<div class="panel panel-default">
-  				<div class="panel-body">
-  					<%= f.label :nome_contacto_preferencial %>
-					<%= f.text_field :nome_contacto_preferencial %>
-					<%= f.label :telefone_contacto_preferencial %>
-					<%= f.text_field :telefone_contacto_preferencial %>
-					<%= f.label :morada_contacto_preferencial %>
-					<%= f.text_field :morada_contacto_preferencial %>
-					<%= f.label :telemovel_contacto_preferencial %>
-					<%= f.text_field :telemovel_contacto_preferencial %>
-				</div>
-			</div>
+	
+	<%= f.label :nome %>
+	<%= f.text_field :nome %>
+	<%= f.label :data_de_nascimento %><br />
+	<%= f.date_select :data_de_nascimento %><br />
+	<!--<div id="datetimepicker1" class="input-append date">
+		<input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+		<span class="add-on">
+			<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+		</span>
+	</div>-->
+	<%= f.label :estado_civil %>
+	<%= f.select(:estado_civil, options_for_select(['Casado(a)', 'Solteiro(a)', 'Viuvo(a)', 'Outro']), { include_blank: true },  { class: 'form-control' }) %>
+	<%= f.label :residencia %>
+	<%= f.text_field :residencia %>
+	<%= f.label :telefone %>
+	<%= f.text_field :telefone %>
+	<%= f.label :subsystem_id %>
+	<div class="row">
+		<div class="col-xs-3">
+			<%= f.collection_select(:subsystem_id, Subsystem.order('nome'), :id, :nome, { include_blank: true }, { class: 'form-control'}) %>
 		</div>
-		<div class="tab-pane" id="situacaosaude">
-			<%= render 'layouts/ipsum' %>
+		<div class="col-xs-9">
+			<% f.label :subsystem_number %>
+			<%= f.text_field :subsystem_number, placeholder: 'Número' %>
 		</div>
-		<div class="tab-pane" id="agregadofamiliar">
-			<%= render 'layouts/ipsum' %>
-		</div>
-		<div class="tab-pane" id="situacaofamiliar">
-			<%= render 'layouts/ipsum' %>
-		</div>
-		<div class="tab-pane" id="situacaoeconomica">
-			<%= render 'layouts/ipsum' %>
-		</div>
-		<div class="tab-pane" id="situacaosociofamiliar">
-			<%= render 'layouts/ipsum' %>
+	</div>
+	<%= f.label :cartao_de_cidadao %>
+	<%= f.text_field :cartao_de_cidadao %>
+	<%= f.label :numero_identificacao_fiscal %>
+	<%= f.text_field :numero_identificacao_fiscal %>
+	<div class="panel panel-default">
+  		<div class="panel-body">
+  			<%= f.label :nome_contacto_preferencial %>
+			<%= f.text_field :nome_contacto_preferencial %>
+			<%= f.label :telefone_contacto_preferencial %>
+			<%= f.text_field :telefone_contacto_preferencial %>
+			<%= f.label :morada_contacto_preferencial %>
+			<%= f.text_field :morada_contacto_preferencial %>
+			<%= f.label :telemovel_contacto_preferencial %>
+			<%= f.text_field :telemovel_contacto_preferencial %>
 		</div>
 	</div>
 
 	<%= f.submit "Guardar", class: 'btn btn-success' %>
 	<%= link_to "Cancelar", @patient, class: 'btn' %>
 <% end %>
-
-<script type="text/javascript">
-	$(function() {
-		$('#datetimepicker1').datetimepicker({});
-	});
-</script>

@@ -1,0 +1,52 @@
+<%= form_for([@patient, @patient.build_habitation]) do |f| %>
+	<div class="row">
+		<div class="col-md-3">
+			<%= f.label :tipo_habitacao %>
+			<%= f.collection_select(:habitationtype_id, Habitationtype.order('nome'), :id, :nome, {include_blank: true }, {class: 'form-control'}) %>
+		</div>
+		<div class="col-md-3">
+			<%= f.label :regime_ocupacao %>
+			<%= f.collection_select(:habitationoccupation_id, Habitationoccupation.order('nome'), :id, :nome, {include_blank: true}, {class: 'form-control'}) %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			<%= f.label :numero_quartos %>
+			<%= f.text_field :numero_quartos %>
+		</div>
+		<div class="col-md-2">
+			<%= f.label :sala %>
+			<%= f.check_box :sala %>
+		</div>
+		<div class="col-md-2">
+			<%= f.label :casa_de_banho %>
+			<%= f.check_box :casa_de_banho %>
+		</div>
+		<div class="col-md-2">
+			<%= f.label :barreiras %>
+			<%= f.check_box :barreiras %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<%= f.label :estado_de_conservacao %>
+			<%= f.select(:estado_de_conservacao, options_for_select(['Bom', 'Razoável', 'Degradado']), { include_blank: true },  { class: 'form-control' }) %>
+		</div>
+		<div class="col-md-2">
+			<%= f.label :agua_canalizada %>
+			<%= f.check_box :agua_canalizada %>
+		</div>
+		<div class="col-md-2">
+			<%= f.label :electricidade %>
+			<%= f.check_box :electricidade %>
+		</div>
+		<div class="col-md-2">
+			<%= f.label :esgotos %>
+			<%= f.check_box :esgotos %>
+		</div>
+	</div>
+	<%= f.label :observacoes %>
+	<%= f.text_area :observacoes %>
+
+	<%= f.submit "Guardar", class: 'btn btn-success' %>
+<% end %>

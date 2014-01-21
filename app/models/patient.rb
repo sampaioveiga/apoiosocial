@@ -1,6 +1,7 @@
 class Patient < ActiveRecord::Base
-	has_many :episodes
 	belongs_to :subsystem
+	has_one :habitation, dependent: :delete
+	has_one :finance, dependent: :delete
 	
 	validates :nome,
 		presence: { message: "não pode estar em branco" }

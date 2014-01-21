@@ -1,0 +1,25 @@
+<% provide(:title, "Editar Situação Financeira #{@patient.nome}") %>
+
+<h1>Editar Situaçõa Financeira <%= @patient.nome %></h1>
+
+<%= form_for([@patient, @patient.finance]) do |f| %>
+	<div class="row">
+		<div class="col-md-5">
+			<%= f.label :pension_id, "Pensão" %>
+			<%= f.collection_select(:pension_id, Pension.order('nome'), :id, :nome, { include_blank: true }, {class: 'form-control'} ) %>
+		</div>
+		<div class="col-md-5">
+			<%= f.label :otherincome_id, "Outro rendimento" %>
+			<%= f.collection_select(:otherincome_id, Otherincome.order('nome'), :id, :nome, { include_blank: true }, { class: 'form-control' }) %>
+		</div>
+		<div class="col-md-2">
+			<%= f.label :montante, "Montante €" %>
+			<%= f.text_field :montante %>
+		</div>
+	</div>
+	<%= f.label :observacoes %>
+	<%= f.text_area :observacoes %>
+
+	<%= f.submit "Guardar", class: 'btn btn-success' %>
+	<%= link_to "Cancelar", @patient, class: 'btn' %>
+<% end %>
