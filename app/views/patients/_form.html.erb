@@ -12,47 +12,79 @@
 	
 	<%= f.label :nome %>
 	<%= f.text_field :nome %>
-	<%= f.label :data_de_nascimento %><br />
-	<%= f.date_select :data_de_nascimento %><br />
-	<!--<div id="datetimepicker1" class="input-append date">
-		<input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
-		<span class="add-on">
-			<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-		</span>
-	</div>-->
-	<%= f.label :estado_civil %>
-	<%= f.select(:estado_civil, options_for_select(['Casado(a)', 'Solteiro(a)', 'Viuvo(a)', 'Outro']), { include_blank: true },  { class: 'form-control' }) %>
+	<div class="row">
+		<div class="col-md-4">
+			<%= f.label :data_de_nascimento %>
+			<%= f.text_field :data_de_nascimento %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<%= f.label :estado_civil %>
+			<%= f.select(:estado_civil, options_for_select(['Casado(a)', 'Solteiro(a)', 'Viuvo(a)', 'Outro']), { include_blank: true },  { class: 'form-control' }) %>
+		</div>
+	</div>
 	<%= f.label :residencia %>
 	<%= f.text_field :residencia %>
-	<%= f.label :telefone %>
-	<%= f.text_field :telefone %>
-	<%= f.label :subsystem_id %>
 	<div class="row">
-		<div class="col-xs-3">
+		<div class="col-md-3">
+			<%= f.label :telefone %>
+			<%= f.text_field :telefone %>
+		</div>
+	</div>
+	<div class="row">
+		
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<%= f.label :cartao_de_cidadao, "CC" %>
+			<%= f.text_field :cartao_de_cidadao %>
+		</div>
+		<div class="col-md-3">
+			<%= f.label :numero_identificacao_fiscal, "NIF" %>
+			<%= f.text_field :numero_identificacao_fiscal %>
+		</div>
+		<div class="col-md-3">
+			<%= f.label :subsystem_id, "Subsistema" %>
 			<%= f.collection_select(:subsystem_id, Subsystem.order('nome'), :id, :nome, { include_blank: true }, { class: 'form-control'}) %>
 		</div>
-		<div class="col-xs-9">
-			<% f.label :subsystem_number %>
+		<div class="col-md-3">
+			<label></label><br />
 			<%= f.text_field :subsystem_number, placeholder: 'Número' %>
 		</div>
 	</div>
-	<%= f.label :cartao_de_cidadao %>
-	<%= f.text_field :cartao_de_cidadao %>
-	<%= f.label :numero_identificacao_fiscal %>
-	<%= f.text_field :numero_identificacao_fiscal %>
-	<div class="panel panel-default">
+	<div class="row panel panel-default">
   		<div class="panel-body">
   			<%= f.label :nome_contacto_preferencial %>
 			<%= f.text_field :nome_contacto_preferencial %>
-			<%= f.label :telefone_contacto_preferencial %>
-			<%= f.text_field :telefone_contacto_preferencial %>
 			<%= f.label :morada_contacto_preferencial %>
 			<%= f.text_field :morada_contacto_preferencial %>
-			<%= f.label :telemovel_contacto_preferencial %>
-			<%= f.text_field :telemovel_contacto_preferencial %>
+			<div class="row">
+				<div class="col-md-6">
+					<%= f.label :telefone_contacto_preferencial %>
+					<%= f.text_field :telefone_contacto_preferencial %>
+				</div>
+				<div class="col-md-6">
+					<%= f.label :telemovel_contacto_preferencial %>
+					<%= f.text_field :telemovel_contacto_preferencial %>
+				</div>
+			</div>
 		</div>
 	</div>
-
-	<%= f.submit "Guardar", class: 'btn btn-success' %>
-	<%= link_to "Cancelar", @patient, class: 'btn' %>
+	<div class="row">
+		<div class="col-md-3">
+			<%= f.submit "Guardar", class: 'btn btn-success' %>
+		</div>
+		<div class="col-md-3">
+			<%= link_to "Cancelar", @patient, class: 'btn' %>
+		</div>
+	</div>
 <% end %>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('input#patient_data_de_nascimento').datepicker({
+			format: "yyyy-mm-dd"
+		});
+	});
+</script>

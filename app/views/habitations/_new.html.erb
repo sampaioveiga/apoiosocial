@@ -45,8 +45,15 @@
 			<%= f.check_box :esgotos %>
 		</div>
 	</div>
-	<%= f.label :observacoes %>
-	<%= f.text_area :observacoes %>
-
-	<%= f.submit "Guardar", class: 'btn btn-success' %>
+	<div class="row">
+		<div class="col-md-12">
+			<%= f.label :observacoes %>
+			<%= f.text_area :observacoes %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			<%= f.submit "Guardar", class: 'btn btn-success' %>
+		</div>
+	</div>
 <% end %>

@@ -1,0 +1,15 @@
+<% provide(:title, "Nova fonte de rendimento") %>
+
+<h1>Nova fonte de rendimento</h1>
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<%= form_for @pension do |f| %>
+			<%= f.label :nome %>
+			<%= f.text_field :nome %>
+
+			<%= f.submit "Guardar", class: 'btn btn-success' %>
+			<%= link_to "Cancelar", pensions_path, class: 'btn' %>
+		<% end %>
+	</div>
+</div>

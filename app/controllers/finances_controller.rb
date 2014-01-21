@@ -28,7 +28,7 @@ class FinancesController < ApplicationController
 
 	private
 		def finance_params
-			params.require(:finance).permit(:pension_id, :otherincome_id, :montante, :observacoes)
+			params.require(:finance).permit(:pension_id, :montante, :observacoes)
 		end
 
 		def load_patient

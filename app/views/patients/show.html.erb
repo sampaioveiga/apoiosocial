@@ -59,7 +59,13 @@
 					<%= render 'finances/show' %>
 				<% end %>	
 			</div>
-			<div class="tab-pane" id="situacaoSocioFamiliar">6<%= render 'layouts/ipsum' %></div>
+			<div class="tab-pane" id="situacaoSocioFamiliar">
+				<% if @patient.socialfamily.nil? %>
+					<%= render 'socialfamilies/new' %>
+				<% else %>
+					<%= render 'socialfamilies/show' %>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>

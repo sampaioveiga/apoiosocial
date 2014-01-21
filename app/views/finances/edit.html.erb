@@ -4,22 +4,27 @@
 
 <%= form_for([@patient, @patient.finance]) do |f| %>
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-3">
 			<%= f.label :pension_id, "Pensão" %>
 			<%= f.collection_select(:pension_id, Pension.order('nome'), :id, :nome, { include_blank: true }, {class: 'form-control'} ) %>
-		</div>
-		<div class="col-md-5">
-			<%= f.label :otherincome_id, "Outro rendimento" %>
-			<%= f.collection_select(:otherincome_id, Otherincome.order('nome'), :id, :nome, { include_blank: true }, { class: 'form-control' }) %>
 		</div>
 		<div class="col-md-2">
 			<%= f.label :montante, "Montante €" %>
 			<%= f.text_field :montante %>
 		</div>
 	</div>
-	<%= f.label :observacoes %>
-	<%= f.text_area :observacoes %>
-
-	<%= f.submit "Guardar", class: 'btn btn-success' %>
-	<%= link_to "Cancelar", @patient, class: 'btn' %>
+	<div class="row">
+		<div class="col-md-12">
+			<%= f.label :observacoes %>
+			<%= f.text_area :observacoes %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			<%= f.submit "Guardar", class: 'btn btn-success' %>
+		</div>
+		<div class="col-md-2">
+			<%= link_to "Cancelar", @patient, class: 'btn' %>
+		</div>
+	</div>
 <% end %>

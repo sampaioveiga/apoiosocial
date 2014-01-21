@@ -1,2 +1,25 @@
-<h1>Pensions#index</h1>
-<p>Find me in app/views/pensions/index.html.erb</p>
+<% provide(:title, "Fontes de rendimento") %>
+
+<h1>Fontes de rendimento</h1>
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<%= link_to "Nova fonte de rendimento", new_pension_path, class: 'btn btn-success' %>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th></th>
+				</tr>
+			</thead>
+				<% @pensions.each do |pension| %>
+					<tr>
+						<td><%= pension.nome %></td>
+						<td><%= link_to "Eliminar", pension, method: :delete, data: { confirm: "A acção é irreversível. Deseja prosseguir?" }, class: 'btn btn-danger' %></td>
+					</tr>
+				<% end %>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+</div>

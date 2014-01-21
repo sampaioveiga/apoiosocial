@@ -2,6 +2,7 @@ class Patient < ActiveRecord::Base
 	belongs_to :subsystem
 	has_one :habitation, dependent: :delete
 	has_one :finance, dependent: :delete
+	has_one :socialfamily, dependent: :delete
 	
 	validates :nome,
 		presence: { message: "não pode estar em branco" }

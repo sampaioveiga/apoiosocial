@@ -1,18 +1,10 @@
-<div class="row panel panel-default">
-	<div class="col-md-5">
-		<label>Pensão</label><br />
+<div class="row">
+	<div class="col-md-3">
+		<label>Fonte de rendimento</label><br />
 		<% if @patient.finance.pension.nil? %>
 			&nbsp;
 		<% else %>
 			<%= @patient.finance.pension.nome %>
-		<% end %>
-	</div>
-	<div class="col-md-5">
-		<label>Outro rendimento</label><br />
-		<% if @patient.finance.otherincome.nil? %>
-			&nbsp;
-		<% else %>
-			<%= @patient.finance.otherincome.nome %>
 		<% end %>
 	</div>
 	<div class="col-md-2">
@@ -20,12 +12,19 @@
 		<%= @patient.finance.montante %>
 	</div>
 </div>
-<div class="row panel panel-default">
+<hr />
+<div class="row">
 	<div class="col-md-12">
 		<label>Observações</label><br />
 		<%= @patient.finance.observacoes %>
 	</div>
 </div>
-
-<%= link_to "Editar", edit_patient_finance_path(@patient, @patient.finance), class: 'btn btn-default' %>
-<%= link_to "Eliminar", [@patient, @patient.finance], method: :delete, data: { confirm: "A acção é irrersível. Deseja prosseguir?" }, class: 'btn btn-danger' %>
+<hr />
+<div class="row">
+	<div class="col-md-2">
+		<%= link_to "Editar", edit_patient_finance_path(@patient, @patient.finance), class: 'btn btn-default' %>
+	</div>
+	<div class="col-md-2">
+		<%= link_to "Eliminar", [@patient, @patient.finance], method: :delete, data: { confirm: "A acção é irrersível. Deseja prosseguir?" }, class: 'btn btn-danger' %>
+	</div>
+</div>

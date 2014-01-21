@@ -1,0 +1,2 @@
+module SocialfamiliesHelper
+end

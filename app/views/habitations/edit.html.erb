@@ -1,6 +1,6 @@
 <% provide(:title, "Editar Condição de habitabilidade #{@patient.nome}") %>
 
-<h1>Editar Condição de habitabilidade<%= @patient.nome %></h1>
+<h1>Editar Condição de habitabilidade <%= @patient.nome %></h1>
 
 <%= form_for([@patient, @patient.habitation]) do |f| %>
 	<div class="row">
@@ -49,9 +49,18 @@
 			<%= f.check_box :esgotos %>
 		</div>
 	</div>
-	<%= f.label :observacoes %>
-	<%= f.text_area :observacoes %>
-
-	<%= f.submit "Guardar", class: 'btn btn-success' %>
-	<%= link_to "Cancelar", @patient, class: 'btn' %>
+	<div class="row">
+		<div class="col-md-12">
+			<%= f.label :observacoes %>
+			<%= f.text_area :observacoes %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			<%= f.submit "Guardar", class: 'btn btn-success' %>
+		</div>
+		<div class="col-md-2">
+			<%= link_to "Cancelar", @patient, class: 'btn' %>
+		</div>
+	</div>
 <% end %>

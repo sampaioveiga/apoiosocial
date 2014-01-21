@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140120152200) do
+ActiveRecord::Schema.define(version: 20140121100851) do
 
   create_table "episodes", force: true do |t|
     t.integer  "patient_id"
@@ -65,12 +65,6 @@ ActiveRecord::Schema.define(version: 20140120152200) do
     t.datetime "updated_at"
   end
 
-  create_table "otherincomes", force: true do |t|
-    t.string   "nome"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "patients", force: true do |t|
     t.string   "nome"
     t.date     "data_de_nascimento"
@@ -109,6 +103,17 @@ ActiveRecord::Schema.define(version: 20140120152200) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "socialfamilies", force: true do |t|
+    t.integer  "patient_id"
+    t.string   "companhia"
+    t.string   "apoio"
+    t.string   "observacoes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "socialfamilies", ["patient_id"], name: "index_socialfamilies_on_patient_id"
 
   create_table "subsystems", force: true do |t|
     t.string   "nome"
