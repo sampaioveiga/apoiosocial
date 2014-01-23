@@ -14,7 +14,7 @@
 			</thead>
 				<% @pensions.each do |pension| %>
 					<tr>
-						<td><%= pension.nome %></td>
+						<td><%= link_to pension.nome, edit_pension_path(pension) %></td>
 						<td><%= link_to "Eliminar", pension, method: :delete, data: { confirm: "A acção é irreversível. Deseja prosseguir?" }, class: 'btn btn-danger' %></td>
 					</tr>
 				<% end %>

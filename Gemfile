@@ -58,5 +58,4 @@ gem 'bcrypt-ruby', '3.1.2'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-#gem 'bootstrap-datetimepicker-rails', '0.0.11'
 gem 'bootstrap-datepicker-rails', '1.1.1.11'

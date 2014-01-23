@@ -2,7 +2,7 @@
 
 <h1><%= @patient.nome %></h1>
 <div class="row well">
-	<div class="col-md-2">
+	<div class="col-sm-2">
 		<dl>
 			<dt>Data Nascimento</dt>
 			<dd><%= @patient.data_de_nascimento %></dd>
@@ -29,7 +29,7 @@
 		</dl>
 		<%= link_to "Editar", edit_patient_path, class: 'btn' %>
 	</div>
-		<div class="col-md-10">
+		<div class="col-sm-10">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#episodios" data-toggle="tab">Episódios</a></li>
 			<!--<li><a href="#situacaoSaude" data-toggle="tab">Situação de Saúde</a></li>-->
