@@ -2,14 +2,28 @@
 
 <h1>Iniciar sessão</h1>
 <div class="row">
-	<div class="col-md-6 col-md-offset-3">
-		<%= form_tag sessions_path do %>
-			<%= label_tag :numero_mecanografico %>
-			<%= text_field_tag :numero_mecanografico %>
-			<%= label_tag :password %>
-			<%= password_field_tag :password %>
-			<%= submit_tag "Entrar", class: 'btn btn-success' %>
-			<%= link_to "Registar", signup_path, class: 'btn btn-link' %>
+	<div class="col-md-offset-1 col-md-10">
+		<%= form_tag sessions_path, html: { class: 'form-horizontal' } do %>
+			<div class="form-group">
+				<%= label_tag :numero_mecanografico, "N. mecanográfico", class: 'col-md-3 control-label' %>
+				<div class="col-md-9">
+					<%= text_field_tag :numero_mecanografico, nil,  class: 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= label_tag :password, nil, class: 'col-md-3 control-label' %>
+				<div class="col-md-9">
+					<%= password_field_tag :password, nil, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-3 col-md-3">
+					<%= submit_tag "Entrar", class: 'btn btn-success' %>
+				</div>
+				<div class="col-md-3">
+					<%= link_to "Registar", signup_path, class: 'btn btn-link' %>
+				</div>
+			</div>
 		<% end %>
-	</div>
+	</div>	
 </div>

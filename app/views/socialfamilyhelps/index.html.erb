@@ -1,0 +1,22 @@
+<% provide(:title, "Tipos de Ajuda") %>
+
+<h1>Tipos de Ajuda</h1>
+<div class="col-md-offset-2 col-md-8">
+	<%= link_to "Novo tipo", new_socialfamilyhelp_path, class: 'btn btn-success' %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @socialfamilyhelps.each do |socialfamilyhelp| %>
+				<tr>
+					<td><%= link_to socialfamilyhelp.nome, edit_socialfamilyhelp_path(socialfamilyhelp), class: 'btn btn-link' %></td>
+					<td><%= link_to "Eliminar", socialfamilyhelp, method: :delete, data: { confirm: "A acção é irrersível. Pretende continuar?" }, class: 'btn btn-danger' %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

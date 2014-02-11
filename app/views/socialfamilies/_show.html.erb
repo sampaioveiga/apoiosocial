@@ -1,29 +1,32 @@
-<div class="row">
-	<div class="col-md-3">
-		<label>Companhia</label><br />
-		<%= @patient.socialfamily.companhia %>
-	</div>
+<div class="col-md-6">
+	<label>Com quem vive </label>
+	<%= @patient.socialfamily.companhia %>
 </div>
-<hr />
-<div class="row">
-	<div class="col-md-3">
-		<label>Apoio</label>
-		<%= @patient.socialfamily.apoio %>
-	</div>
+<div class="col-md-6">
+	<label>De quem recebe apoio </label>
+	<%= @patient.socialfamily.apoio %>
 </div>
-<hr />
-<div class="row">
-	<div class="col-md-12">
-		<label>Observações</label>
-		<%= @patient.socialfamily.observacoes %>
-	</div>
+<br /><hr />
+
+<div class="col-md-12">
+	<label>Tipo de ajuda </label>
+	<% if @patient.socialfamily.socialfamilyhelp.nil? %>
+		&nbsp;
+	<% else %>
+		<%= @patient.socialfamily.socialfamilyhelp.nome %>
+	<% end %>	
 </div>
-<hr />
-<div class="row">
-	<div class="col-md-2">
-		<%= link_to "Editar", edit_patient_socialfamily_path(@patient, @patient.socialfamily), class: 'btn btn-default' %>
-	</div>
-	<div class="col-md-2">
-		<%= link_to "Eliminar", [@patient, @patient.socialfamily], method: :delete, data: { confirm: "A acção é irreversível. Deseja continuar?" }, class: 'btn btn-danger' %>
-	</div>
+<br /><hr />
+
+<div class="col-md-12">
+	<label>Observações</label>
+	<%= @patient.socialfamily.observacoes %>
+</div>
+<br /><hr />
+
+<div class=" col-md-3">
+	<%= link_to "Editar", edit_patient_socialfamily_path(@patient, @patient.socialfamily), class: 'btn btn-default' %>
+</div>
+<div class="col-md-3">
+	<%= link_to "Eliminar", [@patient, @patient.socialfamily], method: :delete, data: { confirm: "A acção é irreversível. Deseja continuar?" }, class: 'btn btn-danger' %>
 </div>

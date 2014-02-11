@@ -10,88 +10,113 @@
 		</div>
 	<% end %>
 	
-	<div class="form-group">
-		<%= f.label :nome, class: 'col-sm-2 control-label' %>
-		<div class="col-sm-10">
-			<%= f.text_field :nome, class: 'form-control' %>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<%= f.label :nome, class: 'col-md-3 control-label' %>
+				<div class="col-md-9">
+					<%= f.text_field :nome, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :data_de_nascimento, "D. nasc.", class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.text_field :data_de_nascimento, placeholder: 'aaaa-mm-dd', class: 'form-control' %>
+				</div>
+				<%= f.label :genero, "Género", class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.select(:genero, options_for_select(['Homem', 'Mulher']), { include_blank: 'Outro' }, {class: 'form-control'}) %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :cartao_de_cidadao, "CC", class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.text_field :cartao_de_cidadao, class: 'form-control' %>
+				</div>
+				<%= f.label :numero_identificacao_fiscal, "NIF", class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.text_field :numero_identificacao_fiscal, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :rnu, "RNU", class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.text_field :rnu, class: 'form-control' %>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="form-group">
-		<%= f.label :data_de_nascimento, "D. nasc.", class: 'col-sm-2 control-label' %>
-		<div class="col-sm-3">
-			<%= f.text_field :data_de_nascimento, class: 'form-control' %>
-		</div>
-	</div>
-	<div class="form-group">
-		<%= f.label :estado_civil, class: 'col-sm-2 control-label' %>
-		<div class="col-sm-3">
-			<%= f.select(:estado_civil, options_for_select(['Casado(a)', 'Solteiro(a)', 'Viuvo(a)', 'Outro']), { include_blank: true },  { class: 'form-control' }) %>
-		</div>
-	</div>
-	<div class="form-group">
-		<%= f.label :residencia, class: 'col-sm-2 control-label' %>
-		<div class="col-sm-10">
-			<%= f.text_field :residencia, class: 'form-control' %>
-		</div>
-	</div>
-	<div class="form-group">
-		<%= f.label :telefone, class: 'col-sm-2 control-label' %>
-		<div class="col-sm-3">
-			<%= f.text_field :telefone, class: 'form-control' %>
-		</div>
-	</div>
-	<div class="form-group">
-		<%= f.label :cartao_de_cidadao, "CC", class: 'col-sm-2 control-label' %>
-		<div class="col-sm-3">
-			<%= f.text_field :cartao_de_cidadao, class: 'form-control' %>
-		</div>
-		<%= f.label :numero_identificacao_fiscal, "NIF", class: 'col-sm-2 control-label' %>
-		<div class="col-sm-3">
-			<%= f.text_field :numero_identificacao_fiscal, class: 'form-control' %>
-		</div>
-	</div>
-	<div class="form-group">
-		<%= f.label :subsystem_id, "Subsistema", class: 'col-sm-2 control-label' %>
-		<div class="col-sm-3">
-			<%= f.collection_select(:subsystem_id, Subsystem.order('nome'), :id, :nome, { include_blank: true }, { class: 'form-control'}) %>
-		</div>
-		<%= f.label :subsystem_number, "Número", class: 'col-sm-2 control-label' %>
-		<div class="col-sm-3">
-			<%= f.text_field :subsystem_number, class: 'form-control' %>
+		<div class="col-md-6">
+			<div class="form-group">
+				<% f.label :residencia, class: 'col-md-3 control-label' %>
+				<div class="col-md-9">
+					<% f.text_field :residencia, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :telefone, class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.text_field :telefone, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :estado_civil, class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.select(:estado_civil, options_for_select(['Casado(a)', 'Solteiro(a)', 'União de Facto', 'Viuvo(a)', 'Outro']), { include_blank: true },  { class: 'form-control' }) %>
+				</div>
+				<%= f.label :habilitacoes_literarios, 'Habilitações', class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.select(:habilitacoes_literarios, options_for_select(['1º ciclo','2º ciclo','3º ciclo','Secundário','Superior','Técnico-profissional','Frequenta básico/secundário','Frequenta superior','Frequenta superior']), { include_blank: true },  { class: 'form-control' }) %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :subsystem_id, "Subsistema", class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.collection_select(:subsystem_id, Subsystem.order('nome'), :id, :nome, { include_blank: true }, { class: 'form-control'}) %>
+				</div>
+				<div class="col-md-3">
+					<%= f.text_field :subsystem_number, placeholder: 'Número', class: 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :ocupacao, "Ocupação", class: 'col-md-3 control-label' %>
+				<div class="col-md-9">
+					<%= f.text_field :ocupacao, class: 'form-control' %>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="panel panel-default">
   		<div class="panel-body">
   			<h2>Contacto preferêncial</h2>
   			<div class="form-group">
-	  			<%= f.label :nome_contacto_preferencial, "Nome", class: 'col-sm-2 control-label' %>
-	  			<div class="col-sm-10">
+	  			<%= f.label :nome_contacto_preferencial, "Nome", class: 'col-md-3 control-label' %>
+	  			<div class="col-md-9">
 					<%= f.text_field :nome_contacto_preferencial, class: 'form-control' %>
 				</div>
 			</div>
 			<div class="form-group">
-				<%= f.label :morada_contacto_preferencial, "Morada", class: 'col-sm-2 control-label' %>
-				<div class="col-sm-10">
+				<%= f.label :morada_contacto_preferencial, "Morada", class: 'col-md-3 control-label' %>
+				<div class="col-md-9">
 					<%= f.text_field :morada_contacto_preferencial, class: 'form-control' %>
 				</div>
 			</div>
 			<div class="form-group">
-				<%= f.label :telefone_contacto_preferencial, "Telefone", class: 'col-sm-2 control-label' %>
-				<div class="col-sm-4">
+				<%= f.label :telefone_contacto_preferencial, "Telefone", class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
 					<%= f.text_field :telefone_contacto_preferencial, class: 'form-control' %>
 				</div>
-				<%= f.label :telemovel_contacto_preferencial, "Telemóvel", class: 'col-sm-2 control-label' %>
-				<div class="col-sm-4">
+				<%= f.label :telemovel_contacto_preferencial, "Telemóvel", class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
 					<%= f.text_field :telemovel_contacto_preferencial, class: 'form-control' %>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-3">
+		<div class="col-md-offset-3 col-md-3">
 			<%= f.submit "Guardar", class: 'btn btn-success' %>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<%= link_to "Cancelar", @patient, class: 'btn' %>
 		</div>
 	</div>

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	has_secure_password
 	before_save { self.email = email.downcase }
+	has_many	:episodes
 
 	validates :nome,
 		presence: { message: "não pode estar vazio" }

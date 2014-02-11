@@ -1,0 +1,25 @@
+<% provide(:title, "Programas") %>
+
+<h1>Programas</h1>
+
+<div class="row">
+	<div class="col-md-offset-3 col-md-6">
+		<%= link_to "Novo Programa", new_program_path, class: 'btn btn-success' %>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @programs.each do |program| %>
+					<tr>
+						<td><%= link_to program.nome, edit_program_path(program) %></td>
+						<td><%= link_to "Eliminar", program, method: :delete, data: { confirm: "A acção é irreversível. Pretende prosseguir?" }, class: 'btn btn-danger' %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

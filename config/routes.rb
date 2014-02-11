@@ -1,8 +1,13 @@
 ApoioSocial::Application.routes.draw do
+  resources :socialfamilyhelps
+  resources :programs
+  resources :interventions
+  resources :units
   resources :subsystems
   resources :habitationtypes
   resources :habitationoccupations
   resources :pensions
+  resources :services
   resources :patients do
     resources :episodes
     resources :habitations

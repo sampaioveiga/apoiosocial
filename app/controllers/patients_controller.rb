@@ -7,6 +7,7 @@ class PatientsController < ApplicationController
 	end
 
 	def show
+		@episodes = @patient.episodes.order('data DESC')
 	end
 
 	def new
@@ -39,12 +40,13 @@ class PatientsController < ApplicationController
 		#if @patient.episodios is empty
 		#then destroy
 		#else inform cannot destroy
+		flash[:info] = "Ainda não"
 		redirect_to patients_path
 	end
 
 	private
 		def patient_params
-			params.require(:patient).permit(:nome, :data_de_nascimento, :estado_civil, :habilitacoes_literarias, :residencia, :telefone, :subsystem_id, :subsystem_number, :cartao_de_cidadao, :numero_identificacao_fiscal, :nome_contacto_preferencial, :telefone_contacto_preferencial, :morada_contacto_preferencial, :telemovel_contacto_preferencial)
+			params.require(:patient).permit(:nome, :data_de_nascimento, :genero, :estado_civil, :habilitacoes_literarias, :residencia, :ocupacao, :telefone, :rnu, :subsystem_id, :subsystem_number, :cartao_de_cidadao, :numero_identificacao_fiscal, :nome_contacto_preferencial, :telefone_contacto_preferencial, :morada_contacto_preferencial, :telemovel_contacto_preferencial)
 		end
 
 		def set_patient

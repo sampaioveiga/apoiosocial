@@ -1,0 +1,25 @@
+<% provide(:title, "Serviços") %>
+
+<h1>Serviços</h1>
+
+<div class="row">
+	<div class="col-md-offset-3 col-md-6">
+		<%= link_to "Novo serviço", new_service_path, class: 'btn btn-success' %>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @services.each do |service| %>
+					<tr>
+						<td><%= link_to service.nome, edit_service_path(service) %></td>
+						<td><%= link_to "Eliminar", service, method: :delete, data: { confirm: "A acção é irreversível. Pretende prosseguir?" }, class: 'btn btn-danger' %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

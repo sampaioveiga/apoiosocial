@@ -1,23 +1,27 @@
-<%= form_for ([@patient, @patient.build_socialfamily]) do |f| %>
-	<div class="row">
+<%= form_for ([@patient, @patient.build_socialfamily]), html: { class: 'form-horizontal' } do |f| %>
+	<div class="form-group">
+		<%= f.label :companhia, "Com quem vive", class: 'col-md-3 control-label' %>
 		<div class="col-md-3">
-			<%= f.label :companhia %>
 			<%= f.select(:companhia, options_for_select(['Só', 'Com família natural', 'Outra']), { include_blank: true }, { class: 'form-control' }) %>
 		</div>
-	</div>
-	<div class="row">
+		<%= f.label :apoio, "De quem recebe apoio", class: 'col-md-3 control-label' %>
 		<div class="col-md-3">
-			<%= f.label :apoio %>
 			<%= f.select(:apoio, options_for_select(['Familiares', 'Centro de Dia', 'Apoio Domiciliário', 'Outro']), { include_blank: true }, { class: 'form-control' }) %>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<%= f.label :observacoes %>
-			<%= f.text_area :observacoes %>
+	<div class="form-group">
+		<%= f.label :socialfamilyhelp_id, "Tipo de ajuda", class: 'col-md-3 control-label' %>				
+		<div class="col-md-9">
+			<%= f.collection_select :socialfamilyhelp_id, Socialfamilyhelp.order('nome'), :id, :nome, { include_blank: true }, { class: 'form-control' } %>
 		</div>
 	</div>
-	<div class="row">
+	<div class="form-group">
+		<%= f.label :observacoes, class: 'col-md-3 control-label' %>
+		<div class="col-md-9">
+			<%= f.text_area :observacoes, class: 'form-control' %>
+		</div>
+	</div>
+	<div class="form-group">
 		<div class="col-md-2">
 			<%= f.submit "Guardar", class: 'btn btn-success' %>
 		</div>

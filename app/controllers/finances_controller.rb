@@ -3,8 +3,8 @@ class FinancesController < ApplicationController
 	before_action :require_login
 
 	def create
-		@patient.create_finance(finance_params)
-		flash[:sucess] = "Situação financeira criada"
+		@finance = @patient.finances.create(finance_params)
+		flash[:success] = "Situação financeira criada"
 		redirect_to @patient
 	end
 
@@ -21,7 +21,8 @@ class FinancesController < ApplicationController
 	end
 
 	def destroy
-		@patient.finance.destroy
+		@finance = @patient.finances.find(params[:id])
+		@finance.destroy
 		flash[:success] = "Situação financeira eliminada"
 		redirect_to @patient
 	end

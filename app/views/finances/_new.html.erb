@@ -1,23 +1,22 @@
-<%= form_for([@patient, @patient.build_finance]) do |f| %>
-	<div class="row">
-		<div class="col-md-3">
-			<%= f.label :pension_id, "Fonte de rendimento" %>
-			<%= f.collection_select(:pension_id, Pension.order('nome'), :id, :nome, { include_blank: true }, {class: 'form-control'} ) %>
-		</div>
+<legend>Nova fonte de rendimento</legend>
+<%= form_for([@patient, @patient.finances.build], html: { class: 'form-horizontal' }) do |f| %>
+	<div class="form-group">
+		<%= f.label :pension_id, "Origem", class: 'col-md-2 control-label' %>
 		<div class="col-md-2">
-			<%= f.label :montante, "Montante €" %>
-			<%= f.text_field :montante %>
+			<%= f.collection_select(:pension_id, Pension.order('nome'), :id, :nome, { include_blank: true }, { class: 'form-control' } ) %>
+		</div>
+		<% f.label :montante, "Montante €", class: 'col-md-2 control-label' %>
+		<div class="col-md-2">
+			<%= f.text_field :montante, placeholder: '€€€', class: 'form-control' %>
+		</div>
+		<% f.label :observacoes, class: 'col-md-2 control-label' %>
+		<div class="col-md-6">
+			<%= f.text_field :observacoes, placeholder: 'Observações', class: 'form-control' %>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<%= f.label :observacoes %>
-			<%= f.text_area :observacoes %>
-		</div>
-	</div>
-	<div class="row">
+	<div class="form-group">
 		<div class="col-md-2">
-			<%= f.submit "Guardar", class: 'btn btn-success' %>
+			<%= f.submit "Inserir", class: 'btn btn-success' %>
 		</div>
 	</div>
 <% end %>

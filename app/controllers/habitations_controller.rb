@@ -22,7 +22,7 @@ class HabitationsController < ApplicationController
 
 	def destroy
 		@patient.habitation.destroy
-		flash[:sucess] = "Situação Habitacional eliminada"
+		flash[:success] = "Situação Habitacional eliminada"
 		redirect_to @patient
 	end
 
@@ -32,7 +32,7 @@ class HabitationsController < ApplicationController
 		end
 
 		def habitation_params
-			params.require(:habitation).permit(:habitationtype_id, :habitationoccupation_id, :numero_quartos, :sala, :casa_de_banho, :barreiras, :agua_canalizada, :electricidade, :esgotos, :estado_de_conservacao, :observacoes)
+			params.require(:habitation).permit(:habitationtype_id, :habitationoccupation_id, :morada, :cpostal, :cpostalext, :localidade, :meio_residencia, :numero_quartos, :sala, :casa_de_banho, :barreiras, :agua_canalizada, :electricidade, :esgotos, :estado_de_conservacao, :observacoes)
 		end
 
 		def require_login

@@ -1,96 +1,115 @@
-<div class="row">
-	<div class="col-md-3">
-		<label>Tipo habitação</label><br />
-		<% if @patient.habitation.habitationtype.nil? %>
-			&nbsp;
-		<% else %>
-			<%= @patient.habitation.habitationtype.nome %>
-		<% end %>
-	</div>
-	<div class="col-md-3">
-		<label>Regime Ocupacional</label><br />
-		<% if @patient.habitation.habitationoccupation.nil? %>
-			&nbsp;
-		<% else %>
-			<%= @patient.habitation.habitationoccupation.nome %>
-		<% end %>
-	</div>
+<div class="col-md-12">
+	<label>Morada</label>
+	<%= @patient.habitation.morada %>
 </div>
-<hr />
-<div class="row">
-	<div class="col-md-2">
-		<label>Número quartos</label><br />
-		<%= @patient.habitation.numero_quartos %>
-	</div>
-	<div class="col-md-2">
-		<label>Sala</label><br />
-		<% if @patient.habitation.sala %>
-			Sim
-		<% else %>
-			&nbsp;
-		<% end %>
-	</div>
-	<div class="col-md-2">
-		<label>Casa de banho</label><br />
-		<% if @patient.habitation.casa_de_banho %>
-			Sim
-		<% else %>
-			&nbsp;
-		<% end %>
-	</div>
-	<div class="col-md-2">
-		<label>Barreiras</label><br />
-		<% if @patient.habitation.barreiras %>
-			Sim
-		<% else %>
-			&nbsp;
-		<% end %>
-	</div>
+<br /><hr />
+
+<div class="col-md-6">
+	<label>C.Postal</label>
+	<%= @patient.habitation.cpostal %>-
+	<%= @patient.habitation.cpostalext %>
 </div>
-<hr />
-<div class="row">
-	<div class="col-md-3">
-		<label>Estado de conservação</label><br />
-		<%= @patient.habitation.estado_de_conservacao %>
-	</div>
-	<div class="col-md-2">
-		<label>Água canalizada</label><br />
-		<% if @patient.habitation.agua_canalizada %>
-			Sim
-		<% else %>
-			&nbsp;
-		<% end %>
-	</div>
-	<div class="col-md-2">
-		<label>Electricidade</label><br />
-		<% if @patient.habitation.electricidade %>
-			Sim
-		<% else %>
-			&nbsp;
-		<% end %>
-	</div>
-	<div class="col-md-2">
-		<label>Esgotos</label><br />
-		<% if @patient.habitation.esgotos %>
-			Sim
-		<% else %>
-			&nbsp;
-		<% end %>
-	</div>
+<div class="col-md-6">
+	<label>Localidade</label>
+	<%= @patient.habitation.localidade %>
 </div>
-<hr />
-<div class="row">
-	<div class="col-md-12">
-		<label>Observações</label><br />
+<br /><hr />
+
+<div class="col-md-6">
+	<label>Tipo habitação</label>
+	<% if @patient.habitation.habitationtype.nil? %>
+		&nbsp;
+	<% else %>
+		<%= @patient.habitation.habitationtype.nome %>
+	<% end %>
+</div>
+<div class="col-md-6">
+	<label>Regime Ocupacional</label>
+	<% if @patient.habitation.habitationoccupation.nil? %>
+		&nbsp;
+	<% else %>
+		<%= @patient.habitation.habitationoccupation.nome %>
+	<% end %>
+</div>
+<br /><hr />
+
+<div class="col-md-6">
+	<label>Meio residência</label>
+	<%= @patient.habitation.meio_residencia %>
+</div>
+<div class="col-md-6">
+	<label>Número quartos</label>
+	<%= @patient.habitation.numero_quartos %>
+</div>
+<br /><hr />
+
+<div class="col-md-4">
+	<label>Sala</label>
+	<% if @patient.habitation.sala %>
+		Sim
+	<% else %>
+		&nbsp;
+	<% end %>
+</div>
+<div class="col-md-4">
+	<label>Casa de banho</label>
+	<% if @patient.habitation.casa_de_banho %>
+		Sim
+	<% else %>
+		&nbsp;
+	<% end %>
+</div>
+<div class="col-md-4">
+	<label>Barreiras</label>
+	<% if @patient.habitation.barreiras %>
+		Sim
+	<% else %>
+		&nbsp;
+	<% end %>
+</div>
+<br /><hr />
+
+<div class="col-md-6">
+	<label>Estado de conservação</label>
+	<%= @patient.habitation.estado_de_conservacao %>
+</div>
+<br /><hr />
+
+<div class="col-md-4">
+	<label>Água canalizada</label>
+	<% if @patient.habitation.agua_canalizada %>
+		Sim
+	<% else %>
+		&nbsp;
+	<% end %>
+</div>
+<div class="col-md-4">
+	<label>Electricidade</label>
+	<% if @patient.habitation.electricidade %>
+		Sim
+	<% else %>
+		&nbsp;
+	<% end %>
+</div>
+<div class="col-md-4">
+	<label>Esgotos</label>
+	<% if @patient.habitation.esgotos %>
+		Sim
+	<% else %>
+		&nbsp;
+	<% end %>
+</div>
+<br /><hr />
+
+<div class="col-md-12">
+	<label>Observações</label>
 		<%= @patient.habitation.observacoes %>
-	</div>
 </div>
-<hr />
-<div class="row">
-	<div class="col-md-2">
-		<%= link_to "Editar", edit_patient_habitation_path(@patient,@patient.habitation), class: 'btn btn-default' %>
-	</div>
-	<div class="col-md-2">
-		<%= link_to "Eliminar", [@patient, @patient.habitation], method: :delete, data: { confirm: 'A acção é irreversível. Deseja prosseguir?' } , class: 'btn btn-danger' %>
-	</div>
+<br /><hr />
+
+<div class="col-md-3">
+	<%= link_to "Editar", edit_patient_habitation_path(@patient,@patient.habitation), class: 'btn btn-default' %>
+</div>
+<div class="col-md-3">
+	<%= link_to "Eliminar", [@patient, @patient.habitation], method: :delete, data: { confirm: 'A acção é irreversível. Deseja prosseguir?' } , class: 'btn btn-danger' %>
 </div>

@@ -1,0 +1,27 @@
+<%= form_for @program, html: { class: 'form-horizontal' } do |f| %>
+	<% if @program.errors.any? %>
+		<div class="error_explanation">
+			<h2>O formulário contém <%= pluralize(@program.errors.count, "erro") %></h2>
+			<ul>
+				<% for message in @program.errors.full_messages %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	
+	<div class="form-group"	>
+		<%= f.label :nome, nil, class: 'col-md-3 control-label' %>
+		<div class="col-md-9">
+			<%= f.text_field :nome, class: 'form-control' %>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-md-offset-3 col-md-3">
+			<%= f.submit "Guardar", class: 'btn btn-success' %>
+		</div>
+		<div class="col-md-3">
+			<%= link_to "Cancelar", programs_path, class: 'btn btn-link' %>
+		</div>
+	</div>
+<% end %>

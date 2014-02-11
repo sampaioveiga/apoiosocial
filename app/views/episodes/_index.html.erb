@@ -1,0 +1,78 @@
+
+		<%= link_to "Novo episódio", new_patient_episode_path(@patient), class: 'btn btn-default' %>
+
+		<div class="panel-group" id="accordion">
+			<% @episodes.each do |episode| %>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href=<%= "#" + episode.id.to_s %>>
+								<%= episode.data %> - <%= episode.user.nome %>
+							</a>
+						</h4>
+					</div>
+					<div id=<%= episode.id.to_s %> class="panel-collapse collapse">
+						<div class="panel-body">
+							<div class="col-md-6">
+								<dl class="dl-horizontal">
+									<dt>Estado</dt>
+									<dd>
+										<% unless episode.estado %>
+											Em curso
+										<% else %>
+											<b>Encerrado</b>
+										<% end %>
+									</dd>
+									<dt>Unidade</dt>
+									<dd>
+										<% if episode.unit.nil? %>
+											&nbsp;
+										<% else %>
+											<%= episode.unit.nome %>&nbsp;
+										<% end %>
+									</dd>
+									<dt>Intervenção</dt>
+									<dd>
+										<% if episode.intervention.nil? %>
+											&nbsp;
+										<% else %>
+											<%= episode.intervention.nome %>&nbsp;
+										<% end %>
+									</dd>
+								</dl>
+							</div>
+							<div class="col-md-6">
+								<dl class="dl-horizontal">
+									<dt>P. colaboração</dt>
+									<dd><%= episode.data_pedido_colaboracao %>&nbsp;</dd>
+									<dt>Serviço</dt>
+									<dd>
+										<% if episode.service.nil? %>
+											&nbsp;
+										<% else %>
+											<%= episode.service.nome %>&nbsp;
+										<% end %>
+									</dd>
+									<dt>Programa</dt>
+									<dd>
+										<% if episode.program.nil? %>
+											&nbsp;
+										<% else %>
+											<%= episode.program.nome %>&nbsp;
+										<% end %>
+									</dd>
+								</dl>
+							</div>
+							<div class="col-md-12">
+								<dl class="dl-horizontal">
+									<dt>Diagnóstico</dt>
+									<dd><%= episode.diagnostico %>&nbsp;</dd>
+									<dt>Encaminhamento</dt>
+									<dd><%= episode.encaminhamento %>&nbsp;</dd>
+								</dl>
+							</div>
+						</div>
+					</div>
+				</div>
+  			<% end %>
+		</div>

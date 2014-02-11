@@ -1,0 +1,10 @@
+<div class="col-md-12">
+	<label>Ocupação</label>
+	<% if @patient.ocupacao.empty? %>
+		Não há registo
+	<% else %>
+		<%= @patient.ocupacao %>
+	<% end %>
+</div>
+<%= render 'finances/show' %>
+<%= render 'finances/new' %>

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 			flash[:success] = "Bem vindo #{user.nome}"
 			redirect_to root_url
 		else
-			flash[:error] = "Credenciais inválidas"
+			flash[:danger] = "Credenciais inválidas"
 			render "new"
 		end
 	end

@@ -2,65 +2,94 @@
 
 <h1>Editar Condição de habitabilidade <%= @patient.nome %></h1>
 
-<%= form_for([@patient, @patient.habitation]) do |f| %>
-	<div class="row">
-		<div class="col-md-3">
-			<%= f.label :tipo_habitacao %>
-			<%= f.collection_select(:habitationtype_id, Habitationtype.order('nome'), :id, :nome, {include_blank: true }, {class: 'form-control'}) %>
+<div class="row">
+	<%= form_for([@patient, @patient.habitation], html: { class: 'form-horizontal' }) do |f| %>
+		<div class="form-group">
+			<%= f.label :morada, class: 'col-md-3 control-label' %>
+			<div class="col-md-9">
+				<%= f.text_field :morada, class: 'form-control' %>
+			</div>
 		</div>
-		<div class="col-md-3">
-			<%= f.label :regime_ocupacao %>
-			<%= f.collection_select(:habitationoccupation_id, Habitationoccupation.order('nome'), :id, :nome, {include_blank: true}, {class: 'form-control'}) %>
+		<div class="form-group">
+			<%= f.label :cpostal, "C. Postal", class: 'col-md-3 control-label' %>
+			<div class="col-md-2">
+				<%= f.text_field :cpostal, class: 'form-control' %>
+			</div>
+			<div class="col-md-1">
+				<%= f.text_field :cpostalext, class: 'form-control' %>
+			</div>
+			<%= f.label :localidade, class: 'col-md-3 control-label' %>
+			<div class="col-md-3">
+				<%= f.text_field :localidade, class: 'form-control' %>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<%= f.label :numero_quartos %>
-			<%= f.text_field :numero_quartos %>
+		<div class="form-group">
+			<%= f.label :tipo_habitacao, class: 'col-md-3 control-label' %>
+			<div class="col-md-3">
+				<%= f.collection_select(:habitationtype_id, Habitationtype.order('nome'), :id, :nome, {include_blank: true }, {class: 'form-control'}) %>
+			</div>
+			<%= f.label :regime_ocupacao, class: 'col-md-3 control-label' %>
+			<div class="col-md-3">
+				<%= f.collection_select(:habitationoccupation_id, Habitationoccupation.order('nome'), :id, :nome, {include_blank: true}, {class: 'form-control'}) %>
+			</div>
 		</div>
-		<div class="col-md-2">
-			<%= f.label :sala %>
-			<%= f.check_box :sala %>
+		<div class="form-group">
+			<%= f.label :meio_residencia, 'Meio residencia', class: 'col-md-3 control-label' %>
+			<div class="col-md-3">
+				<%= f.select(:meio_residencia, options_for_select(['Rural', 'Urbano'], @patient.habitation.meio_residencia), { include_blank: true }, { class: 'form-control'}) %>
+			</div>
+			<%= f.label :numero_quartos, class: 'col-md-3 control-label' %>
+			<div class="col-md-1">
+				<%= f.text_field :numero_quartos, class: 'form-control' %>
+			</div>
 		</div>
-		<div class="col-md-2">
-			<%= f.label :casa_de_banho %>
-			<%= f.check_box :casa_de_banho %>
+		<div class="form-group">
+			<%= f.label :sala, class: 'col-md-3 control-label' %>
+			<div class="col-md-1">
+				<%= f.check_box :sala, checked: true %>	
+			</div>
+			<%= f.label :casa_de_banho, class: 'col-md-3 control-label' %>
+			<div class="col-md-1">
+				<%= f.check_box :casa_de_banho, checked: true %>
+			</div>
+			<%= f.label :barreiras, class: 'col-md-3 control-label' %>
+			<div class="col-md-1">
+				<%= f.check_box :barreiras, checked: true %>
+			</div>
 		</div>
-		<div class="col-md-2">
-			<%= f.label :barreiras %>
-			<%= f.check_box :barreiras %>
+		<div class="form-group">
+			<%= f.label :estado_de_conservacao, class: 'col-md-3 control-label' %>
+			<div class="col-md-3">
+				<%= f.select(:estado_de_conservacao, options_for_select(['Bom', 'Razoável', 'Degradado'], @patient.habitation.estado_de_conservacao), { include_blank: true },  { class: 'form-control' }) %>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-3">
-			<%= f.label :estado_de_conservacao %>
-			<%= f.select(:estado_de_conservacao, options_for_select(['Bom', 'Razoável', 'Degradado']), { include_blank: true },  { class: 'form-control' }) %>
+		<div class="form-group">
+			<%= f.label :agua_canalizada, class: 'col-md-3 control-label' %>
+			<div class="col-md-1">
+				<%= f.check_box :agua_canalizada, checked: true %>
+			</div>
+			<%= f.label :electricidade, class: 'col-md-3 control-label' %>
+			<div class="col-md-1">
+				<%= f.check_box :electricidade, checked: true %>
+			</div>
+			<%= f.label :esgotos, class: 'col-md-3 control-label' %>
+			<div class="col-md-1">
+				<%= f.check_box :esgotos, checked: true %>
+			</div>
 		</div>
-		<div class="col-md-2">
-			<%= f.label :agua_canalizada %>
-			<%= f.check_box :agua_canalizada %>
+		<div class="form-group">
+			<%= f.label :observacoes, class: 'col-md-3 control-label' %>
+			<div class="col-md-9">
+				<%= f.text_area :observacoes, class: 'form-control' %>
+			</div>
 		</div>
-		<div class="col-md-2">
-			<%= f.label :electricidade %>
-			<%= f.check_box :electricidade %>
+		<div class="row">
+			<div class="col-md-offset-3 col-md-2">
+				<%= f.submit "Guardar", class: 'btn btn-success' %>
+			</div>
+			<div class="col-md-2">
+				<%= link_to "Cancelar", @patient, class: 'btn btn-default' %>
+			</div>
 		</div>
-		<div class="col-md-2">
-			<%= f.label :esgotos %>
-			<%= f.check_box :esgotos %>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<%= f.label :observacoes %>
-			<%= f.text_area :observacoes %>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<%= f.submit "Guardar", class: 'btn btn-success' %>
-		</div>
-		<div class="col-md-2">
-			<%= link_to "Cancelar", @patient, class: 'btn' %>
-		</div>
-	</div>
-<% end %>
+	<% end %>
+</div>

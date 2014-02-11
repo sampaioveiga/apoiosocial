@@ -34,6 +34,7 @@ class SubsystemsController < ApplicationController
 
 	def destroy
 		@subsystem.destroy
+		flash[:success] = "Subsistema eliminado"
 		redirect_to subsystems_path
 	end
 

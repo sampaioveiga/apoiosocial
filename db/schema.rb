@@ -11,25 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140121100851) do
+ActiveRecord::Schema.define(version: 20140211100047) do
 
   create_table "episodes", force: true do |t|
     t.integer  "patient_id"
     t.date     "data"
-    t.string   "servico_referenciador"
-    t.string   "primeiro_contacto"
-    t.string   "orientacao"
-    t.string   "observacoes"
+    t.integer  "unit_id",                 limit: 255
+    t.string   "encaminhamento"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "service_id",              limit: 255
+    t.date     "data_pedido_colaboracao"
+    t.integer  "program_id"
+    t.integer  "intervention_id"
+    t.string   "diagnostico"
+    t.integer  "user_id"
+    t.boolean  "estado",                              default: false
   end
 
   add_index "episodes", ["patient_id"], name: "index_episodes_on_patient_id"
 
   create_table "finances", force: true do |t|
     t.integer  "patient_id"
-    t.integer  "pension_id",     limit: 255
-    t.integer  "otherincome_id"
+    t.integer  "pension_id",  limit: 255
     t.integer  "montante"
     t.string   "observacoes"
     t.datetime "created_at"
@@ -57,9 +61,20 @@ ActiveRecord::Schema.define(version: 20140121100851) do
     t.string   "observacoes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "morada"
+    t.integer  "cpostal"
+    t.integer  "cpostalext"
+    t.string   "localidade"
+    t.string   "meio_residencia"
   end
 
   create_table "habitationtypes", force: true do |t|
+    t.string   "nome"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "interventions", force: true do |t|
     t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -82,7 +97,12 @@ ActiveRecord::Schema.define(version: 20140121100851) do
     t.integer  "telemovel_contacto_preferencial"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "genero"
+    t.integer  "rnu"
+    t.string   "ocupacao"
   end
+
+  add_index "patients", ["rnu"], name: "index_patients_on_rnu", unique: true
 
   create_table "patientshomes", force: true do |t|
     t.integer  "patient_id"
@@ -104,6 +124,18 @@ ActiveRecord::Schema.define(version: 20140121100851) do
     t.datetime "updated_at"
   end
 
+  create_table "programs", force: true do |t|
+    t.string   "nome"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "services", force: true do |t|
+    t.string   "nome"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "socialfamilies", force: true do |t|
     t.integer  "patient_id"
     t.string   "companhia"
@@ -111,11 +143,24 @@ ActiveRecord::Schema.define(version: 20140121100851) do
     t.string   "observacoes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "socialfamilyhelp_id"
   end
 
   add_index "socialfamilies", ["patient_id"], name: "index_socialfamilies_on_patient_id"
 
+  create_table "socialfamilyhelps", force: true do |t|
+    t.string   "nome"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "subsystems", force: true do |t|
+    t.string   "nome"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "units", force: true do |t|
     t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"

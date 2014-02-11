@@ -1,2 +1,80 @@
-<h1>Episodes#new</h1>
-<p>Find me in app/views/episodes/new.html.erb</p>
+<% provide(:title, "Novo episódio") %>
+
+<h1>Novo episódio <%= @patient.nome %></h1>
+<div class="row">
+	<div class="col-md-offset-1 col-md-10">
+		<%= form_for ([@patient, @patient.episodes.build]), html: { class: 'form-horizontal' } do |f| %>
+			<div class="hidden form-group">
+				<%= f.label :user_id, class: 'col-md-3 control-label' %>
+				<div class="col-md-9">
+					<%= f.text_field :user_id, value: current_user.id, class: 'form-control', readonly: true %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :data, class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.text_field :data, value: Date.today, placeholder: 'aaaa-mm-dd', class: 'data_jquery form-control' %>
+				</div>
+				<%= f.label :data_pedido_colaboracao, "Pedido de colaboração", class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.text_field :data_pedido_colaboracao, placeholder: 'aaaa-mm-dd', class: 'data_jquery form-control' %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :unit_id, "Unidade", class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.collection_select(:unit_id, Unit.order('nome'), :id, :nome, { include_blank: true }, { class: 'form-control' }) %>
+				</div>
+				<%= f.label :service_id, "Serviço", class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.collection_select(:service_id, Service.order('nome'), :id, :nome, { include_blank: true }, { class: 'form-control' }) %>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<%= f.label :intervention_id, "Intervenção", class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.collection_select(:intervention_id, Intervention.order('nome'), :id, :nome, { include_blank: true }, { class: 'form-control' }) %>
+				</div>
+				<%= f.label :program_id, "Programa", class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.collection_select(:program_id, Program.order('nome'), :id, :nome, { include_blank: true }, { class: 'form-control' }) %>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<%= f.label :diagnostico, "Diagnostico", class: 'col-md-3 control-label' %>
+				<div class="col-md-9">
+					<%= f.text_area :diagnostico, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :encaminhamento, "Encaminhamento", class: 'col-md-3 control-label' %>
+				<div class="col-md-9">
+					<%= f.text_area :encaminhamento,  class: 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-3 col-md-2">
+					<%= f.submit "Guardar", class: 'btn btn-success' %>
+				</div>
+				<div class="col-md-2">
+					<%= link_to "Cancelar", @patient, class: 'btn btn-link' %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('input.data_jquery').datepicker({
+			format: "yyyy-mm-dd",
+			todayHighlight: true,
+			todayBtn: "linked",
+			autoclose: true
+		});
+	});
+</script>

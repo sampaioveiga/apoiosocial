@@ -1,0 +1,25 @@
+<% provide(:title, "Intervenções") %>
+
+<h1>Intervenções</h1>
+
+<div class="row">
+	<div class="col-md-offset-3 col-md-6">
+		<%= link_to "Nova intervenção", new_intervention_path, class: 'btn btn-success' %>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @interventions.each do |intervention| %>
+					<tr>
+						<td><%= link_to intervention.nome, edit_intervention_path(intervention) %></td>
+						<td><%= link_to "Eliminar", intervention, method: :delete, data: { confirm: "A acção é irreversível. Pretende prosseguir?" }, class: 'btn btn-danger' %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

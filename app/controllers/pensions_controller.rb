@@ -22,6 +22,7 @@ class PensionsController < ApplicationController
 
 	def destroy
 		@pension.destroy
+		flash[:succe] = "Fonte de rendimento eliminada"
 		redirect_to pensions_path
 	end
 

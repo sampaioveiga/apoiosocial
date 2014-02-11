@@ -1,4 +1,4 @@
-<%= form_for @user do |f| %>
+<%= form_for @user, html: { class: 'form-horizontal' } do |f| %>
 	<% if @user.errors.any? %>
 		<div class="error_explanation">
 			<h2>O formulário tem <%= pluralize(@user.errors.count, "erro") %></h2>
@@ -9,16 +9,57 @@
 			</ul>
 		</div>
 	<% end %>
-	<%= f.label :nome %>
-	<%= f.text_field :nome %>
-	<%= f.label :numero_mecanografico %>
-	<%= f.text_field :numero_mecanografico %>
-	<%= f.label :email %>
-	<%= f.text_field :email %>
-	<%= f.label :password %>
-	<%= f.password_field :password %>
-	<%= f.label :password_confirmation, "Confirmação" %>
-	<%= f.password_field :password_confirmation %>
-	<%= f.submit "Registar", class: 'btn btn-success' %>
-	<%= link_to 'Cancelar', login_path, class: 'btn' %>
+
+	<div class="form-group">
+		<%= f.label :nome, nil,  class: 'col-md-3 control-label' %>
+		<div class="col-md-9">
+			<%= f.text_field :nome, class: 'form-control' %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :numero_mecanografico, "N. mecanográfico",  class: 'col-md-3 control-label' %>
+		<div class="col-md-9">
+			<%= f.text_field :numero_mecanografico, class: 'form-control' %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :email, nil,  class: 'col-md-3 control-label' %>
+		<div class="col-md-9">
+			<%= f.text_field :email, class: 'form-control' %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :password, nil,  class: 'col-md-3 control-label' %>
+		<div class="col-md-9">
+			<%= f.password_field :password, class: 'form-control' %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :password_confirmation, "Confirmação", class: 'col-md-3 control-label' %>
+		<div class="col-md-9">
+			<%= f.password_field :password_confirmation, class: 'form-control' %>
+		</div>
+	</div>
+	<% unless current_user.nil? %>
+		<%  if current_user.admin %>
+			<div class="form-group">
+				<%= f.label :auth, "Autorização", class: 'col-md-offset-3 col-md-3 control-label' %>
+				<div class="col-md-1">
+					<%= f.check_box :auth, class: 'form-control' %>
+				</div>
+				<%= f.label :auth, "Administração", class: 'col-md-3 control-label' %>
+				<div class="col-md-1">
+					<%= f.check_box :admin, class: 'form-control' %>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+	<div class="form-group">
+		<div class="col-md-offset-3 col-md-3">
+			<%= f.submit "Registar", class: 'btn btn-success' %>
+		</div>
+		<div class="col-md-3">
+			<%= link_to 'Cancelar', login_path, class: 'btn btn-link' %>
+		</div>
+	</div>
 <% end %>

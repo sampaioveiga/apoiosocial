@@ -28,7 +28,7 @@ class SocialfamiliesController < ApplicationController
 
 	private
 		def socialfamily_params
-			params.require(:socialfamily).permit(:companhia, :apoio, :observacoes)
+			params.require(:socialfamily).permit(:companhia, :apoio, :socialfamilyhelp_id, :observacoes)
 		end
 
 		def load_patient

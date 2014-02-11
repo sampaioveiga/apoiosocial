@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
 	before_action :require_login, except: [ :new, :create ]
+	before_action :is_admin, only: [ :index, :destroy ]
+	before_action :set_user, only: [ :show, :edit, :update, :destroy ]
 
 	def index
 		@users = User.order('nome')
+	end
+
+	def show
 	end
 
 	def new
@@ -17,6 +22,18 @@ class UsersController < ApplicationController
 			redirect_to root_url
 		else
 			render 'new'
+		end
+	end
+
+	def edit
+	end
+
+	def update
+		if @user.update(user_params)
+			flash[:success] = "Utilizador atualizado"
+			redirect_to users_path
+		else
+			render 'edit'
 		end
 	end
 
@@ -43,5 +60,19 @@ class UsersController < ApplicationController
 
 		def logged_in?
 			!!current_user
+		end
+
+		def is_admin
+			unless current_user.admin
+				redirect_to root_url
+			end
+		end
+
+		def set_user
+			unless current_user.admin
+				@user = User.find(current_user.id)
+			else
+				@user = User.find(params[:id])
+			end
 		end
 end

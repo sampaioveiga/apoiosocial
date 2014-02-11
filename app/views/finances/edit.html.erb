@@ -2,29 +2,33 @@
 
 <h1>Editar Situaçõa Financeira <%= @patient.nome %></h1>
 
-<%= form_for([@patient, @patient.finance]) do |f| %>
-	<div class="row">
-		<div class="col-md-3">
-			<%= f.label :pension_id, "Pensão" %>
-			<%= f.collection_select(:pension_id, Pension.order('nome'), :id, :nome, { include_blank: true }, {class: 'form-control'} ) %>
-		</div>
-		<div class="col-md-2">
-			<%= f.label :montante, "Montante €" %>
-			<%= f.text_field :montante %>
-		</div>
+<div class="row">
+	<div class="col-md-offset-1 col-md-10">
+		<%= form_for([@patient, @patient.finance]) do |f| %>
+			<div class="form-group">
+				<%= f.label :pension_id, "Fonte de rendimento", class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.collection_select(:pension_id, Pension.order('nome'), :id, :nome, { include_blank: true }, { class: 'form-control' } ) %>
+				</div>
+				<%= f.label :montante, "Montante €", class: 'col-md-3 control-label' %>
+				<div class="col-md-3">
+					<%= f.text_field :montante, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :observacoes, class: 'col-md-3 control-label' %>
+				<div class="col-md-9">
+					<%= f.text_area :observacoes, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-3">
+					<%= f.submit "Guardar", class: 'btn btn-success' %>
+				</div>
+				<div class="col-md-3">
+					<%= link_to "Cancelar", @patient, class: 'btn btn-link' %>
+				</div>
+			</div>
+		<% end %>
 	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<%= f.label :observacoes %>
-			<%= f.text_area :observacoes %>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<%= f.submit "Guardar", class: 'btn btn-success' %>
-		</div>
-		<div class="col-md-2">
-			<%= link_to "Cancelar", @patient, class: 'btn' %>
-		</div>
-	</div>
-<% end %>
+</div>

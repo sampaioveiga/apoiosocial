@@ -2,14 +2,12 @@
 
 <h1><%= @patient.nome %></h1>
 <div class="row well">
-	<div class="col-sm-2">
+	<div class="col-md-2">
 		<dl>
 			<dt>Data Nascimento</dt>
 			<dd><%= @patient.data_de_nascimento %></dd>
 			<dt>Estado Civil</dt>
 			<dd><%= @patient.estado_civil %></dd>
-			<dt>Residência</dt>
-			<dd><%= @patient.residencia %></dd>
 			<dt>Telefone</dt>
 			<dd><%= @patient.telefone %></dd>
 			<dt>Subsistema</dt>
@@ -29,10 +27,9 @@
 		</dl>
 		<%= link_to "Editar", edit_patient_path, class: 'btn' %>
 	</div>
-		<div class="col-sm-10">
+		<div class="col-md-10">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#episodios" data-toggle="tab">Episódios</a></li>
-			<!--<li><a href="#situacaoSaude" data-toggle="tab">Situação de Saúde</a></li>-->
 			<li><a href="#agregadoFamiliar" data-toggle="tab">Agregado Familiar</a></li>
 			<li><a href="#situacaoHabitacional" data-toggle="tab">Situação Habitacional</a></li>
 			<li><a href="#situacaoEconomica" data-toggle="tab">Situação Económica</a></li>
@@ -41,30 +38,47 @@
 
 		<div class="tab-content">
 			<div class="tab-pane active" id="episodios">
-				1<%= render 'layouts/ipsum' %>
+				<div class="row">
+					<div class="col-md-offset-1 col-md-10">
+						<%= render 'episodes/index' %>
+					</div>
+				</div>
 			</div>
-			<!--<div class="tab-pane" id="situacaoSaude">2<%= render 'layouts/ipsum' %></div>-->
-			<div class="tab-pane" id="agregadoFamiliar">3<%= render 'layouts/ipsum' %></div>
+			<div class="tab-pane" id="agregadoFamiliar">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-10">
+						3 <%= render 'layouts/ipsum' %>
+					</div>
+				</div>
+			</div>
 			<div class="tab-pane" id="situacaoHabitacional">
-				<% if @patient.habitation.nil? %>
-					<%= render 'habitations/new' %>
-				<% else %>
-					<%= render 'habitations/show' %>
-				<% end %>
+				<div class="row">
+					<div class="col-md-offset-1 col-md-10">
+						<% if @patient.habitation.nil? %>
+							<%= render 'habitations/new' %>
+						<% else %>
+							<%= render 'habitations/show' %>
+						<% end %>
+					</div>
+				</div>
 			</div>
 			<div class="tab-pane" id="situacaoEconomica">
-				<% if @patient.finance.nil? %>
-					<%= render 'finances/new' %>
-				<% else %>
-					<%= render 'finances/show' %>
-				<% end %>	
+				<div class="row">
+					<div class="col-md-offset-1 col-md-10">
+						<%= render 'finances' %>
+					</div>
+				</div>
 			</div>
 			<div class="tab-pane" id="situacaoSocioFamiliar">
-				<% if @patient.socialfamily.nil? %>
-					<%= render 'socialfamilies/new' %>
-				<% else %>
-					<%= render 'socialfamilies/show' %>
-				<% end %>
+				<div class="row">
+					<div class="col-md-offset-1 col-md-10">
+						<% if @patient.socialfamily.nil? %>
+							<%= render 'socialfamilies/new' %>
+						<% else %>
+							<%= render 'socialfamilies/show' %>
+						<% end %>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
