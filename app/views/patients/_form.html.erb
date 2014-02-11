@@ -10,6 +10,7 @@
 		</div>
 	<% end %>
 	
+	<legend>Identificação</legend>
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
@@ -85,9 +86,10 @@
 			</div>
 		</div>
 	</div>
-	<div class="panel panel-default">
-  		<div class="panel-body">
-  			<h2>Contacto preferêncial</h2>
+	
+	<legend>Contacto preferêncial</legend>
+	<div class="row">
+		<div class="col-md-6">
   			<div class="form-group">
 	  			<%= f.label :nome_contacto_preferencial, "Nome", class: 'col-md-3 control-label' %>
 	  			<div class="col-md-9">
@@ -100,6 +102,8 @@
 					<%= f.text_field :morada_contacto_preferencial, class: 'form-control' %>
 				</div>
 			</div>
+		</div>
+		<div class="col-md-6">
 			<div class="form-group">
 				<%= f.label :telefone_contacto_preferencial, "Telefone", class: 'col-md-3 control-label' %>
 				<div class="col-md-3">
@@ -112,11 +116,12 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="form-group">
-		<div class="col-md-offset-3 col-md-3">
+		<div class="col-md-offset-3 col-md-2">
 			<%= f.submit "Guardar", class: 'btn btn-success' %>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<%= link_to "Cancelar", @patient, class: 'btn' %>
 		</div>
 	</div>

@@ -7,7 +7,13 @@
 					<div class="panel-heading">
 						<h4 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion" href=<%= "#" + episode.id.to_s %>>
-								<%= episode.data %> - <%= episode.user.nome %>
+								<%= episode.data %> - 
+								<%= episode.user.nome %> - 
+								<% unless episode.estado %>
+									Em curso
+								<% else %>
+									<b>Encerrado</b>
+								<% end %>
 							</a>
 						</h4>
 					</div>
