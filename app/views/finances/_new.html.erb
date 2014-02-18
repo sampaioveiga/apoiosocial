@@ -1,5 +1,5 @@
-<legend>Nova fonte de rendimento</legend>
 <%= form_for([@patient, @patient.finances.build], html: { class: 'form-horizontal' }) do |f| %>
+	<legend>Nova fonte de rendimento</legend>
 	<div class="form-group">
 		<%= f.label :pension_id, "Origem", class: 'col-md-2 control-label' %>
 		<div class="col-md-2">
@@ -10,13 +10,14 @@
 			<%= f.text_field :montante, placeholder: '€€€', class: 'form-control' %>
 		</div>
 		<% f.label :observacoes, class: 'col-md-2 control-label' %>
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<%= f.text_field :observacoes, placeholder: 'Observações', class: 'form-control' %>
+		</div>
+		<div class="col-md-2">
+			<%= f.submit "Inserir", class: 'btn btn-success navbar-btn' %>
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-md-offset-2 col-md-2">
-			<%= f.submit "Inserir", class: 'btn btn-success' %>
-		</div>
+		
 	</div>
 <% end %>

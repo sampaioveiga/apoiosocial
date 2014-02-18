@@ -1,0 +1,13 @@
+<ul class="list-group">
+	<% @episode.notes.order('data DESC').each do |note| %>
+		<li class="list-group-item">
+			<h4>
+				<%= note.data %>&nbsp;|
+				<%= note.user.nome %>
+				<%= link_to "Editar", edit_patient_episode_note_path(@episode.patient, @episode, note), class: 'btn btn-default btn-sm' %>
+				<%= link_to "Eliminar", [@episode.patient, @episode, note], method: :delete, data: { confirm: "Tem a certeza?" }, class: 'btn btn-danger btn-sm' %>
+			</h4>
+			<p><%= note.nota %></p>
+		</li>
+	<% end %>
+</ul>

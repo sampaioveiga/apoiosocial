@@ -1,0 +1,34 @@
+<%= form_for([@patient, @episode, @episode.notes.build], html: { class: 'form-horizontal' }) do |f| %>
+	<legend>Nova nota</legend>
+	<div class="hidden form-group">
+		<%= f.label :user_id, class: 'col-md-3 control-label' %>
+		<div class="col-md-9">
+			<%= f.text_field :user_id, value: current_user.id, class: 'form-control', readonly: true %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :data, "Data", class: 'col-md-2 control-label' %>
+		<div class="col-md-3">
+			<%= f.text_field :data, placeholder: 'aaaa/mm/dd', class: 'form-control' %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :nota, class: 'col-md-2 control-label' %>
+		<div class="col-md-10">
+			<%= f.text_area :nota, class: 'form-control' %>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-2">
+			<%= f.submit "Guardar", class: 'btn btn-success' %>
+		</div>
+	</div>
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('input#note_data').datepicker({
+			format: "yyyy-mm-dd"
+		});
+	});
+</script>

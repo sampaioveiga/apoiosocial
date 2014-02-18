@@ -1,0 +1,65 @@
+<dl>
+	<dt>Estado</dt>
+	<dd>
+		<% unless @episode.estado %>
+			Em curso
+		<% else %>
+			Encerrado
+		<% end %>
+	</dd>
+
+	<dt>Data</dt>
+	<dd><%= @episode.data %>&nbsp;</dd>
+
+	<dt>Utilizador</dt>
+	<dd><%= @episode.user.nome %>&nbsp;</dd>
+
+	<dt>Data pedido</dt>
+	<dd><%= @episode.data_pedido_colaboracao %>&nbsp;</dd>
+	
+	<dt>Unidade</dt>
+	<dd>
+		<% if @episode.unit.nil? %>
+			&nbsp;
+		<% else %>
+			<%= @episode.unit.nome %>&nbsp;
+		<% end %>
+	</dd>
+
+	<dt>Serviço</dt>
+	<dd>
+		<% if @episode.service.nil? %>
+			&nbsp;
+		<% else %>
+			<%= @episode.service.nome %>&nbsp;
+		<% end %>
+	</dd>
+
+	<dt>Intervenção</dt>
+	<dd>
+		<% if @episode.intervention.nil? %>
+			&nbsp;
+		<% else %>
+			<%= @episode.intervention.nome %>&nbsp;
+		<% end %>
+	</dd>
+	
+	<dt>Programa</dt>
+	<dd>
+		<% if @episode.program.nil? %>
+			&nbsp;
+		<% else %>
+			<%= @episode.program.nome %>&nbsp;
+		<% end %>
+	</dd>
+
+	<dt>Diagnóstico</dt>
+	<dd>
+		<%= @episode.diagnostico %>&nbsp;
+	</dd>
+
+	<dt>Encaminhamento</dt>
+	<dd>
+		<%= @episode.encaminhamento %>&nbsp;
+	</dd>
+</dl>

@@ -9,17 +9,20 @@ ApoioSocial::Application.routes.draw do
   resources :pensions
   resources :services
   resources :patients do
-    resources :episodes
+    resources :episodes do
+      resources :notes
+      match '/archive',   to: 'episodes#archive',   via: 'get'
+    end
     resources :habitations
     resources :finances
     resources :socialfamilies
   end
   resources :users,       except: [ :destroy ]
   resources :sessions,    except: [ :edit, :update ]
-  match '/dashboard', to: 'static_pages#index',   via: 'get'
-  match '/signup',    to: 'users#new',            via: 'get'
-  match '/login',     to: 'sessions#new',         via: 'get'
-  match '/logout',    to: 'sessions#destroy',     via: 'get'
+  match '/dashboard', to: 'static_pages#index', via: 'get'
+  match '/signup',    to: 'users#new',          via: 'get'
+  match '/login',     to: 'sessions#new',       via: 'get'
+  match '/logout',    to: 'sessions#destroy',   via: 'get'
   root 'static_pages#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

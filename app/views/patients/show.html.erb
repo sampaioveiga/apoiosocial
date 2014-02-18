@@ -1,25 +1,24 @@
 <% provide(:title, @patient.nome) %>
 
-<h1><%= @patient.nome %></h1>
-<div class="row well">
-	<div class="col-md-2">
-		<%= render 'patient' %>
-	</div>
-	<div class="col-md-10">
-		<ul class="nav nav-pills">
-			<li class="active"><a href="#episodios" data-toggle="tab">Episódios</a></li>
-			<!--<li><a href="#agregadoFamiliar" data-toggle="tab">Agregado Familiar</a></li>-->
+<div class="row">
+	<div class="col-md-3 well">
+		<legend><%= @patient.nome %></legend>
+		
+		<ul class="nav nav-pills nav-stacked">
+			<li class="active"><a href="#episodios" data-toggle="tab">Episódios <span class="badge"><%= @patient.episodes.count %></span></a></li>
+			<li><a href="#situacaoPessoal" data-toggle="tab">Perfil</a></li>
 			<li><a href="#situacaoHabitacional" data-toggle="tab">Situação Habitacional</a></li>
 			<li><a href="#situacaoEconomica" data-toggle="tab">Situação Económica</a></li>
 			<li><a href="#situacaoSocioFamiliar" data-toggle="tab">Situação Sócio-familiar</a></li>
 		</ul>
-
-	<div class="tab-content">
-		<div class="tab-pane active" id="episodios">
-			<%= render 'episodes/index' %>
+	</div>
+	<div class="col-md-9">
+		<div class="tab-content">
+			<div class="tab-pane active" id="episodios">
+				<%= render 'episodes/index' %>
 			</div>
-			<div class="tab-pane" id="agregadoFamiliar">
-				<%= render 'layouts/ipsum' %>
+			<div class="tab-pane" id="situacaoPessoal">
+				<%= render 'show' %>
 			</div>
 			<div class="tab-pane" id="situacaoHabitacional">
 				<% if @patient.habitation.nil? %>

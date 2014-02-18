@@ -1,0 +1,28 @@
+<% provide(:title, "Episódios de #{@patient.nome}") %>
+
+<div class="col-md-3 well">
+	<legend><%= @patient.nome %></legend>
+	<%= render 'show' %>
+</div>
+<div class="col-md-9">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			 <ul class="nav navbar-nav">
+			 	<li>
+				 	<%= link_to "Editar", edit_patient_episode_path(@patient, @episode) %>
+				 </li>
+        		<li>
+        			<%= link_to "Regressar", @patient %>
+        		</li>
+        	</ul>
+			<div class="col-md-2">
+				<%= link_to "Arquivar", patient_episode_archive_path(@patient, @episode), data: { confirm: "Não será possível fazer alterações futuras ao episódio. Pretende continuar?" }, class: 'btn btn-primary navbar-btn' %>
+			</div>
+			<div class="col-md-2">
+				<%= link_to "Eliminar", [@episode.patient, @episode], method: :delete, data: { confirm: "Esta acção é irreversível. Pretende continuar?" }, class: 'btn btn-danger navbar-btn' %>
+			</div>
+		</div>
+	</nav>
+	<%= render 'notes/show' %>
+	<%= render 'notes/new' %>
+</div>

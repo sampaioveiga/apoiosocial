@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<ul class="nav navbar-nav">
+        	<li class="active">
+        		<%= link_to "Editar", edit_patient_path %>
+        	</li>
+    	</ul>
+	</div>
+</nav>
+<dl>
+	<dt>Data Nascimento</dt>
+	<dd><%= @patient.data_de_nascimento %>&nbsp;</dd>
+	<dt>Idade</dt>
+	<dd><%= time_ago_in_words(@patient.data_de_nascimento) %>&nbsp;</dd>
+	<dt>Estado Civil</dt>
+	<dd><%= @patient.estado_civil %>&nbsp;</dd>
+	<dt>Telefone</dt>
+	<dd><%= @patient.telefone %>&nbsp;</dd>
+	<dt>Subsistema</dt>
+	<dd><%= @patient.subsystem_id %><%= @patient.subsystem_number %>&nbsp;</dd>
+	<dt>Cartão de Cidadão</dt>
+	<dd><%= @patient.cartao_de_cidadao %>&nbsp;</dd>
+	<dt>NIF</dt>
+	<dd><%= @patient.numero_identificacao_fiscal %>&nbsp;</dd>
+	<dt>Contacto Preferencial</dt>
+	<dd><%= @patient.nome_contacto_preferencial %>&nbsp;</dd>
+	<dt>Telefone</dt>
+	<dd><%= @patient.telefone_contacto_preferencial %>&nbsp;</dd>
+	<dt>Morada</dt>
+	<dd><%= @patient.morada_contacto_preferencial %>&nbsp;</dd>
+	<dt>Telemóvel</dt>
+	<dd><%= @patient.telemovel_contacto_preferencial %>&nbsp;</dd>
+</dl>

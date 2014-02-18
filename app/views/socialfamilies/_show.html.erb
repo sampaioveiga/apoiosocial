@@ -1,3 +1,15 @@
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<ul class="nav navbar-nav">
+        	<li class="active">
+        		<%= link_to "Editar", edit_patient_socialfamily_path(@patient, @patient.socialfamily) %>
+        	</li>
+        </ul>
+		<div class="col-md-2">
+			<%= link_to "Eliminar", [@patient, @patient.socialfamily], method: :delete, data: { confirm: "A acção é irreversível. Deseja continuar?" }, class: 'btn btn-danger navbar-btn' %>
+		</div>
+	</div>
+</nav>
 <div class="col-md-6">
 	<label>Com quem vive </label>
 	<%= @patient.socialfamily.companhia %>
@@ -21,12 +33,4 @@
 <div class="col-md-12">
 	<label>Observações</label>
 	<%= @patient.socialfamily.observacoes %>
-</div>
-<br /><hr />
-
-<div class=" col-md-3">
-	<%= link_to "Editar", edit_patient_socialfamily_path(@patient, @patient.socialfamily), class: 'btn btn-default' %>
-</div>
-<div class="col-md-3">
-	<%= link_to "Eliminar", [@patient, @patient.socialfamily], method: :delete, data: { confirm: "A acção é irreversível. Deseja continuar?" }, class: 'btn btn-danger' %>
 </div>
