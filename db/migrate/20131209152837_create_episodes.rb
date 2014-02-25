@@ -4,7 +4,8 @@ class CreateEpisodes < ActiveRecord::Migration
       t.references :patient, index: true
       t.date :data
       t.string :servico_referenciador
-      t.string :primeiro_contacto
+      #t.string :primeiro_contacto
+      t.integer :primeiro_contacto
       t.string :orientacao
       t.string :observacoes
 
