@@ -23,6 +23,7 @@ ApoioSocial::Application.routes.draw do
   match '/signup',    to: 'users#new',          via: 'get'
   match '/login',     to: 'sessions#new',       via: 'get'
   match '/logout',    to: 'sessions#destroy',   via: 'get'
+  match '/search',    to: 'patients#search',    via: 'get'
   root 'static_pages#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

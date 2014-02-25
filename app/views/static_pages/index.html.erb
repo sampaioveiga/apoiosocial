@@ -1,3 +1,32 @@
 <% provide(:title, "Dashboard") %>
 
-<h1>Dashboard</h1>
+<div class="col-md-2">
+	<h1>
+		<small>Dashboard</small><br />
+		<%= current_user.nome %>
+	</h1>
+	<%= render 'patients/search' %>
+</div>
+<div class="col-md-10">
+	<legend>Episódios em curso <span class="badge"><%= @episodes.count %></span></legend>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Data</th>
+					<th>Utente</th>
+					<th>Diagnóstico</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @episodes.each do |episode| %>
+					<tr>
+						<td><%= episode.data %></td>
+						<td><%= link_to episode.patient.nome, episode.patient %></td>
+						<td><%= episode.diagnostico%></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

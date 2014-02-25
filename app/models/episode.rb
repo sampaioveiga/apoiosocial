@@ -5,7 +5,7 @@ class Episode < ActiveRecord::Base
 	belongs_to	:intervention
 	belongs_to	:program
 	belongs_to	:user
-	has_many	:notes, dependent: :delete_all
+	has_many	:notes, dependent: :destroy
 
 	validates :data,
 		presence: { message: "não pode estar vazio" }

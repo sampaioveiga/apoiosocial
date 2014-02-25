@@ -2,11 +2,16 @@ class NotesController < ApplicationController
 	before_action :load_episode
 	before_action :set_note, except: [ :new, :create, :index ]
 	before_action :check_episode_status
+	rescue_from ActiveRecord::RecordInvalid, with: :show_errors
 	before_action :require_login
 
+	def new
+	end
+
 	def create
-		@episode.notes.create(note_params)
-		redirect_to [@episode.patient, @episode]
+		@note = @episode.notes.create!(note_params)
+		flash[:success] = "Nota no episódio #{@episode.data} criada"
+		redirect_to @episode.patient
 	end
 
 	def edit
@@ -14,8 +19,8 @@ class NotesController < ApplicationController
 
 	def update
 		if @note.update(note_params)
-			flash[:success] = "Nota atualizada"
-			redirect_to [@episode.patient, @episode]
+			flash[:success] = "Nota no episódio #{@episode.data} atualizada"
+			redirect_to @episode.patient
 		else
 			render 'edit'
 		end
@@ -23,12 +28,12 @@ class NotesController < ApplicationController
 
 	def destroy
 		if @episode.estado
-			flash[:danger] = "Episódio arquivado. Não é possível alterar o registo"
-			redirect_to [@episode.patient, @episode]
+			flash[:danger] = "Episódio #{@episode.data} arquivado. Não é possível alterar o registo"
+			redirect_to @patient
 		else
 			@note.destroy
-			flash[:success] = "Nota eliminada"
-			redirect_to [@episode.patient, @episode]
+			flash[:success] = "Nota do episódio #{@episode.data} eliminada"
+			redirect_to @patient
 		end
 	end
 
@@ -42,6 +47,11 @@ class NotesController < ApplicationController
 				flash[:danger] = "Episódio arquivado. Não é possível alterar o registo"
 				redirect_to [@episode.patient, @episode]
 			end
+		end
+
+		def show_errors(exception)
+			flash[:danger] = exception.message
+			redirect_to [@episode.patient, @episode]
 		end
 
 		def load_episode

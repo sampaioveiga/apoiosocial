@@ -5,6 +5,9 @@
         		<%= link_to "Editar", edit_patient_path %>
         	</li>
     	</ul>
+    	<div class="col-md-2">
+        	<%= link_to "Eliminar", @patient, method: :delete, data: { confirm: 'A eliminação é irreversível. Pretende continuar?' }, class: 'btn btn-danger navbar-btn' %>
+        </div>
 	</div>
 </nav>
 <dl>

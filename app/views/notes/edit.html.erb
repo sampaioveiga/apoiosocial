@@ -1,6 +1,7 @@
 <% provide(:title, "Editar #{@episode.patient.nome}") %>
 
 <%= form_for([@episode.patient, @episode, @note], html: { class: 'form-horizontal' }) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
 	<div class="form-group">
 		<%= f.label :data, "Data", class: 'col-md-2 control-label' %>
 		<div class="col-md-3">

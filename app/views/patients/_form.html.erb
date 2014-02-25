@@ -1,14 +1,5 @@
 <%= form_for @patient, html: { class: 'form-horizontal' } do |f| %>
-	<% if @patient.errors.any? %>
-		<div class="error_explanation">
-			<h2>O formulário contém <%= pluralize(@patient.errors.count, "erro") %></h2>
-			<ul>
-				<% for message in @patient.errors.full_messages %>
-					<li><%= message %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
+	<%= render 'shared/error_messages', object: f.object %>
 	
 	<legend>Identificação</legend>
 	<div class="row">
@@ -40,7 +31,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<%= f.label :rnu, "RNU", class: 'col-md-3 control-label' %>
+				<%= f.label :rnu, "RNU/SNS", class: 'col-md-3 control-label' %>
 				<div class="col-md-3">
 					<%= f.text_field :rnu, class: 'form-control' %>
 				</div>

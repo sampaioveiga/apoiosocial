@@ -1,4 +1,6 @@
 <%= form_for([@patient, @episode, @episode.notes.build], html: { class: 'form-horizontal' }) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	
 	<legend>Nova nota</legend>
 	<div class="hidden form-group">
 		<%= f.label :user_id, class: 'col-md-3 control-label' %>

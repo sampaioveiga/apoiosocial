@@ -19,7 +19,7 @@ end
 gem 'sass-rails', '4.0.1'
 #gem 'fullcalendar-rails', '1.6.4.0'
 #gem 'bootstrap-sass', '2.3.2.0'
-gem 'bootstrap-sass', '3.0.3.0'
+gem 'bootstrap-sass', '3.1.1.0'
 gem 'will_paginate', '3.0.5'
 gem 'bootstrap-will_paginate', '0.0.10'
 

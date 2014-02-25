@@ -3,22 +3,29 @@
 <h1>Utentes</h1>
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
-		<%= link_to "Novo utente", new_patient_path, class: 'btn btn-info' %>
+		<%= will_paginate @patients %>
 		<table class="table">
 			<thead>
 				<tr>
 					<th>Nome</th>
-					<th></th>
+					<th>Idade</th>
+					<th>Cartão de Cidadão</th>
+					<th>NIF</th>
+					<th>RNU/SNS</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% @patients.each do |patient| %>
 					<tr>
 						<td><%= link_to patient.nome, patient %></td>
-						<td><%= link_to "Eliminar", patient, method: :delete, data: { confirm: 'A eliminação é irreversível. Pretende continuar?' }, class: 'btn btn-danger' %></td>
+						<td><%= time_ago_in_words(patient.data_de_nascimento) %></td>
+						<td><%= patient.cartao_de_cidadao %></td>
+						<td><%= patient.numero_identificacao_fiscal %></td>
+						<td><%= patient.rnu %></td>
 					</tr>
 				<% end %>
 			</tbody>
 		</table>
+		<%= will_paginate @patients %>
 	</div>
 </div>

@@ -7,9 +7,18 @@ class EpisodesController < ApplicationController
 	def show
 	end
 
+	def new
+	end
+
 	def create
-		@patient.episodes.create(episode_params)
-		redirect_to @patient
+		@episode = @patient.episodes.build(episode_params)
+		if @episode.save
+			flash[:success] = "Episódio #{@episode.data} criado"
+			redirect_to @patient
+		else
+			flash[:danger] = @episode.errors.full_messages
+			render 'new'
+		end
 	end
 
 	def edit
@@ -17,8 +26,8 @@ class EpisodesController < ApplicationController
 
 	def update
 		if @episode.update(episode_params)
-			flash[:success] = "Episódio atualizado"
-			redirect_to [@patient, @episode]
+			flash[:success] = "Episódio #{@episode.data} atualizado"
+			redirect_to @patient
 		else
 			render 'edit'
 		end
@@ -31,13 +40,13 @@ class EpisodesController < ApplicationController
 			flash[:success] = "Episódio #{episode.data} arquivado"
 			redirect_to @patient
 		else
-			flash[:danger] = "Episódio arquivado. Não é possível alterar o registo"
-			redirect_to [@patient, episode]
+			flash[:danger] = "Episódio #{episode.data} arquivado"
+			redirect_to @patient
 		end
 	end
 
 	def destroy
-		flash[:success] = "Episódio eliminado"
+		flash[:success] = "Episódio #{@episode.data} eliminado"
 		@episode.destroy
 		redirect_to @patient
 	end
@@ -57,8 +66,8 @@ class EpisodesController < ApplicationController
 
 		def check_status
 			if @episode.estado
-				flash[:danger] = "Episódio arquivado. Não é possível alterar o registo"
-				redirect_to [@patient, @episode]
+				flash[:danger] = "Episódio já arquivado. Não é possível alterar o registo"
+				redirect_to @patient
 			end
 		end
 

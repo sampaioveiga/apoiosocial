@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+	before_action :require_not_login, only: [ :new, :create ]
+
 	def new
 	end
 
@@ -19,4 +21,15 @@ class SessionsController < ApplicationController
 		flash[:success] = "Sessão terminada"
 		redirect_to login_path
 	end
+
+	private
+		def require_not_login
+			if logged_in?
+				redirect_to root_url
+			end
+		end
+
+		def logged_in?
+			!!current_user
+		end
 end

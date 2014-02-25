@@ -11,19 +11,33 @@
 			<div class="panel-heading">
 				<h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href=<%= "#" + episode.id.to_s %>>
-						<%= episode.data %> - 
-						<%= episode.user.nome %> - 
-						<% unless episode.estado %>
-							Em curso
-						<% else %>
-							<b>Encerrado</b>
+						<%= episode.data %>&nbsp;|
+						<%= episode.user.nome %>
+						<% if episode.estado %>
+							<b>| Encerrado</b>
 						<% end %>
 					</a>
-					|&nbsp;<%= link_to "Notas (#{episode.notes.count})", patient_episode_path(@patient,episode), class: 'btn btn-default btn-xs' %>
 				</h4>
 			</div>
 			<div id=<%= episode.id.to_s %> class="panel-collapse collapse">
 				<div class="panel-body">
+					<div class="col-md-12">
+						<div class="col-md-offset-4 col-md-2">
+							<% link_to "Ver notas (#{episode.notes.count})", patient_episode_path(@patient,episode), class: 'btn btn-default btn-xs' %>
+							<button class="btn btn-default btn-xs" data-toggle="modal" data-target=<%= "#" + episode.id.to_s + "_notes" %>>
+								Ver notas (<%= episode.notes.count %>)
+							</button>
+						</div>
+						<div class="col-md-2">
+							<%= link_to "Editar episódio", edit_patient_episode_path(episode.patient, episode), class: 'btn btn-default btn-xs' %>
+						</div>
+						<div class="col-md-2">
+							<%= link_to "Arquivar", patient_episode_archive_path(episode.patient, episode), data: { confirm: "Não será possível fazer alterações futuras ao episódio. Pretende continuar?" }, class: 'btn btn-primary btn-xs' %>
+						</div>
+						<div class="col-md-2">
+							<%= link_to "Eliminar", [episode.patient, episode], method: :delete, data: { confirm: "Esta acção é irreversível. Pretende continuar?" }, class: 'btn btn-danger btn-xs' %>
+						</div>
+					</div>
 					<div class="col-md-6">
 						<dl class="dl-horizontal">
 							<dt>Estado</dt>
@@ -85,5 +99,71 @@
 				</div>
 			</div>
 		</div>
+		<!-- Modal -->
+		<div class="modal fade" id=<%= episode.id.to_s + "_notes" %> tabindex="-1" role="dialog" aria-labelledby=<%= episode.data %> aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Episódio <%= episode.data %> <%= episode.user.nome %></h4>
+					</div>
+					<div class="modal-body">
+						<ul class="list-group">
+							<% episode.notes.order('data DESC').each do |note| %>
+								<li class="list-group-item">
+									<h4>
+										<%= note.data %>&nbsp;|
+										<%= note.user.nome %>
+										<%= link_to "Editar", edit_patient_episode_note_path(episode.patient, episode, note), class: 'btn btn-default btn-sm' %>
+										<%= link_to "Eliminar", [episode.patient, episode, note], method: :delete, data: { confirm: "Tem a certeza?" }, class: 'btn btn-danger btn-sm' %>
+									</h4>
+									<p><%= note.nota %></p>
+								</li>
+							<% end %>
+						</ul>
+						<%= form_for([episode.patient, episode, episode.notes.build], html: { class: 'form-horizontal' }) do |f| %>
+							<%= render 'shared/error_messages', object: f.object %>
+	
+							<legend>Nova nota</legend>
+							<div class="hidden form-group">
+								<%= f.label :user_id, class: 'col-md-3 control-label' %>
+								<div class="col-md-9">
+									<%= f.text_field :user_id, value: current_user.id, class: 'form-control', readonly: true %>
+								</div>
+							</div>
+							<div class="form-group">
+								<%= f.label :data, "Data", class: 'col-md-2 control-label' %>
+								<div class="col-md-3">
+									<%= f.text_field :data, placeholder: 'aaaa/mm/dd', class: 'form-control note_data' %>
+								</div>
+							</div>
+							<div class="form-group">
+								<%= f.label :nota, class: 'col-md-2 control-label' %>
+								<div class="col-md-10">
+									<%= f.text_area :nota, class: 'form-control' %>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-2">
+									<%= f.submit "Guardar", class: 'btn btn-success' %>
+								</div>
+							</div>
+						<% end %>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
+						<!--<button type="button" class="btn btn-primary">Save changes</button>-->
+					</div>
+				</div>
+			</div>
+		</div>
 	<% end %>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('input.note_data').datepicker({
+			format: "yyyy-mm-dd"
+		});
+	});
+</script>

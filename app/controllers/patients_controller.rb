@@ -1,9 +1,10 @@
 class PatientsController < ApplicationController
-	before_action :set_patient, except: [:index, :new, :create]
+	before_action :set_patient, except: [:index, :new, :create, :search]
 	before_action :require_login
 
 	def index
-		@patients = Patient.order('nome')
+		#@patients = Patient.order('nome')
+		@patients = Patient.order('nome').paginate(page: params[:page], :per_page => 30)
 	end
 
 	def show
@@ -37,11 +38,24 @@ class PatientsController < ApplicationController
 	end
 
 	def destroy
-		#if @patient.episodios is empty
-		#then destroy
-		#else inform cannot destroy
-		flash[:info] = "Ainda não"
-		redirect_to patients_path
+		if @patient.episodes.count == 0
+			flash[:success] = "#{@patient.nome} eliminado."
+			@patient.destroy
+			redirect_to patients_path
+		else 
+			flash[:danger] = "Não é possível eliminar #{@patient.nome}. Já tem episódios criados."
+			redirect_to @patient
+		end
+	end
+
+	def search
+		@patients = Patient.where("nome LIKE :prefix OR cartao_de_cidadao LIKE :prefix OR numero_identificacao_fiscal LIKE :prefix OR rnu LIKE :prefix", prefix: "%#{params[:search_string]}%").paginate(page: params[:page], :per_page => 30)
+		if @patients.empty?
+			flash[:info] = "A pesquisa não devolveu resultados"
+			redirect_to new_patient_path
+		else
+			render 'index'
+		end
 	end
 
 	private

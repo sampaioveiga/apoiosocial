@@ -7,6 +7,8 @@ class Patient < ActiveRecord::Base
 	
 	validates :nome,
 		presence: { message: "não pode estar em branco" }
+	validates :data_de_nascimento,
+		presence: { message: "não pode estar em branco" }
 	validates :telefone,
 		numericality: { message: "só pode conter números", allow_nil: true }
 	validates :rnu,
