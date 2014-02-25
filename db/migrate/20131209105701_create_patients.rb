@@ -7,6 +7,7 @@ class CreatePatients < ActiveRecord::Migration
       t.string :habilitacoes_literarios
       t.string :residencia
       t.integer :telefone
+      #t.string :sistema_de_saude
       t.integer :sistema_de_saude
       t.integer :sistema_de_saude_numero
       t.integer :cartao_de_cidadao
