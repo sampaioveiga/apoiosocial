@@ -2,7 +2,7 @@ class NotesController < ApplicationController
 	before_action :load_episode
 	before_action :set_note, except: [ :new, :create, :index ]
 	before_action :check_episode_status
-	rescue_from ActiveRecord::RecordInvalid, with: :show_errors
+	#rescue_from ActiveRecord::RecordInvalid, with: :show_errors
 	before_action :require_login
 
 	def new
@@ -49,10 +49,10 @@ class NotesController < ApplicationController
 			end
 		end
 
-		def show_errors(exception)
-			flash[:danger] = exception.message
-			redirect_to [@episode.patient, @episode]
-		end
+#		def show_errors(exception)
+#			flash[:danger] = exception.message
+#			redirect_to [@episode.patient, @episode]
+#		end
 
 		def load_episode
 			@episode = Episode.find(params[:episode_id])
