@@ -3,11 +3,15 @@ class CreateEpisodes < ActiveRecord::Migration
     create_table :episodes do |t|
       t.references :patient, index: true
       t.date :data
-      t.string :servico_referenciador
-      #t.string :primeiro_contacto
-      t.integer :primeiro_contacto
-      t.string :orientacao
-      t.string :observacoes
+      t.date :data_pedido_colaboracao
+      t.references :unit
+      t.references :service
+      t.references :program
+      t.references :intervention
+      t.references :user
+      t.string :diagnostico
+      t.string :encaminhamento
+      t.boolean :estado, default: false
 
       t.timestamps
     end

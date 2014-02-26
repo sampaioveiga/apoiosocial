@@ -7,15 +7,17 @@ class CreatePatients < ActiveRecord::Migration
       t.string :habilitacoes_literarios
       t.string :residencia
       t.integer :telefone
-      #t.string :sistema_de_saude
-      t.integer :sistema_de_saude
-      t.integer :sistema_de_saude_numero
-      t.integer :cartao_de_cidadao
-      t.integer :numero_identificao_fiscal
+      t.integer :subsystem_id
+      t.integer :subsystem_number
+      t.integer :cartao_de_cidadao, index: true
+      t.integer :numero_identificacao_fiscal, index: true
       t.string :nome_contacto_preferencial
       t.integer :telefone_contacto_preferencial
       t.string :morada_contacto_preferencial
       t.integer :telemovel_contacto_preferencial
+      t.string :genero
+      t.integer :rnu, index: true
+      t.string :ocupacao
 
       t.timestamps
     end
