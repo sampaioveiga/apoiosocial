@@ -49,7 +49,8 @@ class PatientsController < ApplicationController
 	end
 
 	def search
-		@patients = Patient.where("nome LIKE :prefix OR cartao_de_cidadao LIKE :prefix OR numero_identificacao_fiscal LIKE :prefix OR rnu LIKE :prefix", prefix: "%#{params[:search_string]}%").paginate(page: params[:page], :per_page => 30)
+		#@patients = Patient.where("cartao_de_cidadao LIKE :prefix.to_integer", prefix: "%#{params[:search_string]}%").paginate(page: params[:page], :per_page => 30)
+		@patients = Patient.where("nome LIKE :prefix", prefix: "%#{params[:search_string]}%").paginate(page: params[:page], :per_page => 30)
 		if @patients.empty?
 			flash[:info] = "A pesquisa não devolveu resultados"
 			redirect_to new_patient_path

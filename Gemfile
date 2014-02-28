@@ -6,7 +6,8 @@ gem 'rails', '4.0.2'
 
 group :development do
 	# Use sqlite3 as the database for Active Record
-	gem 'sqlite3', '1.3.8'
+	#gem 'sqlite3', '1.3.8'
+	gem 'pg', '0.17.0'
 	gem 'better_errors', '1.0.1'
 end
 

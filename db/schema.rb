@@ -11,34 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217143524) do
+ActiveRecord::Schema.define(version: 20140212141754) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "episodes", force: true do |t|
     t.integer  "patient_id"
     t.date     "data"
-    t.integer  "unit_id",                 limit: 255
-    t.string   "encaminhamento"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "service_id",              limit: 255
     t.date     "data_pedido_colaboracao"
+    t.integer  "unit_id"
+    t.integer  "service_id"
     t.integer  "program_id"
     t.integer  "intervention_id"
-    t.string   "diagnostico"
     t.integer  "user_id"
-    t.boolean  "estado",                              default: false
+    t.string   "diagnostico"
+    t.string   "encaminhamento"
+    t.boolean  "estado",                  default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "episodes", ["patient_id"], name: "index_episodes_on_patient_id"
+  add_index "episodes", ["patient_id"], name: "index_episodes_on_patient_id", using: :btree
 
   create_table "finances", force: true do |t|
     t.integer  "patient_id"
-    t.integer  "pension_id",  limit: 255
+    t.integer  "pension_id"
     t.integer  "montante"
     t.string   "observacoes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "finances", ["patient_id"], name: "index_finances_on_patient_id", using: :btree
 
   create_table "habitationoccupations", force: true do |t|
     t.string   "nome"
@@ -48,8 +53,8 @@ ActiveRecord::Schema.define(version: 20140217143524) do
 
   create_table "habitations", force: true do |t|
     t.integer  "patient_id"
-    t.integer  "habitationtype_id",       limit: 255
-    t.integer  "habitationoccupation_id", limit: 255
+    t.integer  "habitationtype_id"
+    t.integer  "habitationoccupation_id"
     t.integer  "numero_quartos"
     t.boolean  "sala"
     t.boolean  "casa_de_banho"
@@ -59,14 +64,16 @@ ActiveRecord::Schema.define(version: 20140217143524) do
     t.boolean  "esgotos"
     t.string   "estado_de_conservacao"
     t.string   "observacoes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "morada"
     t.integer  "cpostal"
     t.integer  "cpostalext"
     t.string   "localidade"
     t.string   "meio_residencia"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "habitations", ["patient_id"], name: "index_habitations_on_patient_id", using: :btree
 
   create_table "habitationtypes", force: true do |t|
     t.string   "nome"
@@ -83,10 +90,10 @@ ActiveRecord::Schema.define(version: 20140217143524) do
   create_table "notes", force: true do |t|
     t.date     "data"
     t.string   "nota"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "episode_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "patients", force: true do |t|
@@ -96,7 +103,7 @@ ActiveRecord::Schema.define(version: 20140217143524) do
     t.string   "habilitacoes_literarios"
     t.string   "residencia"
     t.integer  "telefone"
-    t.integer  "subsystem_id",                    limit: 255
+    t.integer  "subsystem_id"
     t.integer  "subsystem_number"
     t.integer  "cartao_de_cidadao"
     t.integer  "numero_identificacao_fiscal"
@@ -104,28 +111,12 @@ ActiveRecord::Schema.define(version: 20140217143524) do
     t.integer  "telefone_contacto_preferencial"
     t.string   "morada_contacto_preferencial"
     t.integer  "telemovel_contacto_preferencial"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "genero"
     t.integer  "rnu"
     t.string   "ocupacao"
-  end
-
-  add_index "patients", ["rnu"], name: "index_patients_on_rnu", unique: true
-
-  create_table "patientshomes", force: true do |t|
-    t.integer  "patient_id"
-    t.string   "tipo_habitacao"
-    t.string   "regime_de_ocupacao"
-    t.string   "divisoes"
-    t.string   "conforto_salubridade"
-    t.string   "estado_de_conservacao"
-    t.string   "observacoes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "patientshomes", ["patient_id"], name: "index_patientshomes_on_patient_id"
 
   create_table "pensions", force: true do |t|
     t.string   "nome"
@@ -147,15 +138,15 @@ ActiveRecord::Schema.define(version: 20140217143524) do
 
   create_table "socialfamilies", force: true do |t|
     t.integer  "patient_id"
+    t.integer  "socialfamilyhelp_id"
     t.string   "companhia"
     t.string   "apoio"
     t.string   "observacoes"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "socialfamilyhelp_id"
   end
 
-  add_index "socialfamilies", ["patient_id"], name: "index_socialfamilies_on_patient_id"
+  add_index "socialfamilies", ["patient_id"], name: "index_socialfamilies_on_patient_id", using: :btree
 
   create_table "socialfamilyhelps", force: true do |t|
     t.string   "nome"
@@ -185,8 +176,5 @@ ActiveRecord::Schema.define(version: 20140217143524) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["numero_mecanografico"], name: "index_users_on_numero_mecanografico", unique: true
 
 end
