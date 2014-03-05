@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140212141754) do
+ActiveRecord::Schema.define(version: 20140305144931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contacts", force: true do |t|
+    t.string   "nome"
+    t.string   "morada"
+    t.string   "localidade"
+    t.integer  "telefone"
+    t.integer  "telemovel"
+    t.string   "email"
+    t.integer  "patient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contacts", ["patient_id"], name: "index_contacts_on_patient_id", using: :btree
 
   create_table "episodes", force: true do |t|
     t.integer  "patient_id"
@@ -25,11 +39,11 @@ ActiveRecord::Schema.define(version: 20140212141754) do
     t.integer  "program_id"
     t.integer  "intervention_id"
     t.integer  "user_id"
-    t.string   "diagnostico"
-    t.string   "encaminhamento"
     t.boolean  "estado",                  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "diagnostico"
+    t.text     "encaminhamento"
   end
 
   add_index "episodes", ["patient_id"], name: "index_episodes_on_patient_id", using: :btree
@@ -63,7 +77,6 @@ ActiveRecord::Schema.define(version: 20140212141754) do
     t.boolean  "electricidade"
     t.boolean  "esgotos"
     t.string   "estado_de_conservacao"
-    t.string   "observacoes"
     t.string   "morada"
     t.integer  "cpostal"
     t.integer  "cpostalext"
@@ -71,6 +84,7 @@ ActiveRecord::Schema.define(version: 20140212141754) do
     t.string   "meio_residencia"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "observacoes"
   end
 
   add_index "habitations", ["patient_id"], name: "index_habitations_on_patient_id", using: :btree
@@ -89,11 +103,11 @@ ActiveRecord::Schema.define(version: 20140212141754) do
 
   create_table "notes", force: true do |t|
     t.date     "data"
-    t.string   "nota"
     t.integer  "episode_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "nota"
   end
 
   create_table "patients", force: true do |t|
@@ -107,15 +121,13 @@ ActiveRecord::Schema.define(version: 20140212141754) do
     t.integer  "subsystem_number"
     t.integer  "cartao_de_cidadao"
     t.integer  "numero_identificacao_fiscal"
-    t.string   "nome_contacto_preferencial"
-    t.integer  "telefone_contacto_preferencial"
-    t.string   "morada_contacto_preferencial"
-    t.integer  "telemovel_contacto_preferencial"
     t.string   "genero"
     t.integer  "rnu"
     t.string   "ocupacao"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
+    t.integer  "telemovel"
   end
 
   create_table "pensions", force: true do |t|

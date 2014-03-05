@@ -25,6 +25,7 @@ class EpisodesController < ApplicationController
 	end
 
 	def update
+		params[:user_id] = @episode.user_id
 		if @episode.update(episode_params)
 			flash[:success] = "Episódio #{@episode.data} atualizado"
 			redirect_to @patient

@@ -29,11 +29,11 @@ class NotesController < ApplicationController
 	def destroy
 		if @episode.estado
 			flash[:danger] = "Episódio #{@episode.data} arquivado. Não é possível alterar o registo"
-			redirect_to @patient
+			redirect_to @episode.patient
 		else
 			@note.destroy
 			flash[:success] = "Nota do episódio #{@episode.data} eliminada"
-			redirect_to @patient
+			redirect_to @episode.patient
 		end
 	end
 

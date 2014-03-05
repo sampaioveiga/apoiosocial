@@ -30,7 +30,7 @@ class PatientsController < ApplicationController
 
 	def update
 		if @patient.update(patient_params)
-			flash[:success] = "Utente atualizado"
+			flash[:success] = "Utente #{@patient.nome} atualizado"
 			redirect_to @patient
 		else
 			render 'edit'
@@ -61,7 +61,7 @@ class PatientsController < ApplicationController
 
 	private
 		def patient_params
-			params.require(:patient).permit(:nome, :data_de_nascimento, :genero, :estado_civil, :habilitacoes_literarias, :residencia, :ocupacao, :telefone, :rnu, :subsystem_id, :subsystem_number, :cartao_de_cidadao, :numero_identificacao_fiscal, :nome_contacto_preferencial, :telefone_contacto_preferencial, :morada_contacto_preferencial, :telemovel_contacto_preferencial)
+			params.require(:patient).permit(:nome, :data_de_nascimento, :genero, :estado_civil, :habilitacoes_literarias, :residencia, :ocupacao, :telefone, :telemovel, :rnu, :subsystem_id, :subsystem_number, :cartao_de_cidadao, :numero_identificacao_fiscal, :email)
 		end
 
 		def set_patient

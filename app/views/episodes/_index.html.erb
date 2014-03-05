@@ -19,7 +19,11 @@
 					</a>
 				</h4>
 			</div>
-			<div id=<%= episode.id.to_s %> class="panel-collapse collapse">
+			<% if episode.estado %>
+				<div id=<%= episode.id.to_s %> class="panel-collapse collapse">
+			<% else %>
+				<div id=<%= episode.id.to_s %> class="panel-collapse collapse in">
+			<% end %>
 				<div class="panel-body">
 					<div class="col-md-12">
 						<div class="col-md-offset-4 col-md-2">

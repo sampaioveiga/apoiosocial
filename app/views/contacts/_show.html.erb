@@ -1,0 +1,25 @@
+<h3>Contactos preferêncais</h3>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Nome</th>
+			<th>Morada</th>
+			<th>Telefone</th>
+			<th>Telemovel</th>
+			<th>E-mail</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @patient.contacts.each do |contact| %>
+			<tr>
+				<td><%= contact.nome %></td>
+				<td><%= contact.morada %></td>
+				<td><%= contact.telefone %></td>
+				<td><%= contact.telemovel %></td>
+				<td><%= contact.email %></td>
+				<td><%= link_to "Eliminar contacto", '#', class: 'btn btn-danger' %></td>
+			</tr>
+		<% end %>
+	</tboby>
+</table>

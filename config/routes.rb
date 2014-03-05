@@ -16,6 +16,7 @@ ApoioSocial::Application.routes.draw do
     resources :habitations
     resources :finances
     resources :socialfamilies
+    resources :contacts
   end
   resources :users,       except: [ :destroy ]
   resources :sessions,    except: [ :edit, :update ]

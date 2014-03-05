@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
 	before_save { self.email = email.downcase }
 	has_many	:episodes
 	has_many	:notes
-
+	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+	
 	validates :nome,
 		presence: { message: "não pode estar vazio" }
 	validates :numero_mecanografico,
@@ -11,7 +12,6 @@ class User < ActiveRecord::Base
 		length: { is: 5, message: "tem de possuir 5 números" },
 		numericality: { message: "só pode conter números" },
 		uniqueness: { message: "já existe na base de dados" }
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email,
 		presence: { message: "não pode estar vazio" },
 		uniqueness: { message: "já existe na base de dados" },

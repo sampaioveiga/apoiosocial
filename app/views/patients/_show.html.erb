@@ -1,36 +1,62 @@
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
-		<ul class="nav navbar-nav">
-        	<li class="active">
-        		<%= link_to "Editar", edit_patient_path %>
-        	</li>
-    	</ul>
-    	<div class="col-md-2">
-        	<%= link_to "Eliminar", @patient, method: :delete, data: { confirm: 'A eliminação é irreversível. Pretende continuar?' }, class: 'btn btn-danger navbar-btn' %>
-        </div>
+		<div class="navbar-brand">Perfil e contacto preferêncial</div>
+		<div class="navbar-right">
+			<%= link_to "Eliminar ficha", @patient, method: :delete, data: { confirm: 'A eliminação é irreversível. Pretende continuar?' }, class: 'btn btn-danger navbar-btn' %>
+		</div>
 	</div>
 </nav>
-<dl>
-	<dt>Data Nascimento</dt>
-	<dd><%= @patient.data_de_nascimento %>&nbsp;</dd>
-	<dt>Idade</dt>
-	<dd><%= time_ago_in_words(@patient.data_de_nascimento) %>&nbsp;</dd>
-	<dt>Estado Civil</dt>
-	<dd><%= @patient.estado_civil %>&nbsp;</dd>
-	<dt>Telefone</dt>
-	<dd><%= @patient.telefone %>&nbsp;</dd>
-	<dt>Subsistema</dt>
-	<dd><%= @patient.subsystem_id %><%= @patient.subsystem_number %>&nbsp;</dd>
-	<dt>Cartão de Cidadão</dt>
-	<dd><%= @patient.cartao_de_cidadao %>&nbsp;</dd>
-	<dt>NIF</dt>
-	<dd><%= @patient.numero_identificacao_fiscal %>&nbsp;</dd>
-	<dt>Contacto Preferencial</dt>
-	<dd><%= @patient.nome_contacto_preferencial %>&nbsp;</dd>
-	<dt>Telefone</dt>
-	<dd><%= @patient.telefone_contacto_preferencial %>&nbsp;</dd>
-	<dt>Morada</dt>
-	<dd><%= @patient.morada_contacto_preferencial %>&nbsp;</dd>
-	<dt>Telemóvel</dt>
-	<dd><%= @patient.telemovel_contacto_preferencial %>&nbsp;</dd>
-</dl>
+<div class="col-md-12">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>D. nasc.</th>
+				<th>Idade</th>
+				<th>Género</th>
+				<th>CC</th>
+				<th>NIF</th>
+				<th>RNU/SNS</th>
+				<th>Subsistema</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= @patient.data_de_nascimento %></td>
+				<td><%= time_ago_in_words(@patient.data_de_nascimento) %></td>
+				<td><%= @patient.genero %></td>
+				<td><%= @patient.cartao_de_cidadao %></td>
+				<td><%= @patient.numero_identificacao_fiscal %></td>
+				<td><%= @patient.rnu %></td>
+				<% if @patient.subsystem.nil? %>
+					<td></td>
+				<% else %>
+					<td><%= @patient.subsystem.nome %>-<%= @patient.subsystem_number %></td>
+				<% end %>
+			</tr>
+		</tbody>
+	</table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Telefone</th>
+				<th>Telemovel</th>
+				<th>E-mail</th>
+				<th>Estado Civil</th>
+				<th>Habilitações</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= @patient.telefone %></td>
+				<td><%= @patient.telemovel %></td>
+				<td><%= @patient.email %></td>
+				<td><%= @patient.estado_civil %></td>
+				<td><%= @patient.habilitacoes_literarios %></td>
+				<td><%= link_to "Editar ficha", edit_patient_path, class: 'btn btn-default' %></td>
+			</tr>
+		</tbody>
+	</table>
+	<%= render 'contacts/show' %>
+	<%= render 'contacts/new' %>
+</div>
