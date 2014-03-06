@@ -68,9 +68,9 @@
 				<div class="col-md-3">
 					<%= f.select(:estado_civil, options_for_select(['Casado(a)', 'Solteiro(a)', 'União de Facto', 'Viuvo(a)', 'Outro'], @patient.estado_civil), { include_blank: true },  { class: 'form-control' }) %>
 				</div>
-				<%= f.label :habilitacoes_literarios, 'Habilitações', class: 'col-md-3 control-label' %>
+				<% f.label :habilitacoes_literarios, 'Habilitações', class: 'col-md-3 control-label' %>
 				<div class="col-md-3">
-					<%= f.select(:habilitacoes_literarios, options_for_select(['1º ciclo','2º ciclo','3º ciclo','Secundário','Superior','Técnico-profissional','Frequenta básico/secundário','Frequenta superior','Frequenta superior'], @patient.habilitacoes_literarios), { include_blank: true },  { class: 'form-control' }) %>
+					<% f.select(:habilitacoes_literarios, options_for_select(['1º ciclo','2º ciclo','3º ciclo','Secundário','Superior','Técnico-profissional','Frequenta básico/secundário','Frequenta superior','Frequenta superior'], @patient.habilitacoes_literarios), { include_blank: true },  { class: 'form-control' }) %>
 				</div>
 			</div>
 			<div class="form-group">

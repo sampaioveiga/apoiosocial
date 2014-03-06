@@ -1,8 +1,11 @@
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="navbar-brand">Perfil e contacto preferêncial</div>
-		<div class="navbar-right">
+		<div class="col-md-2 navbar-right">
 			<%= link_to "Eliminar ficha", @patient, method: :delete, data: { confirm: 'A eliminação é irreversível. Pretende continuar?' }, class: 'btn btn-danger navbar-btn' %>
+		</div>
+		<div class="col-md-2 navbar-right">
+			<%= link_to "Editar ficha", edit_patient_path, class: 'btn btn-default navbar-btn' %>
 		</div>
 	</div>
 </nav>
@@ -43,7 +46,6 @@
 				<th>E-mail</th>
 				<th>Estado Civil</th>
 				<th>Habilitações</th>
-				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -53,7 +55,6 @@
 				<td><%= @patient.email %></td>
 				<td><%= @patient.estado_civil %></td>
 				<td><%= @patient.habilitacoes_literarios %></td>
-				<td><%= link_to "Editar ficha", edit_patient_path, class: 'btn btn-default' %></td>
 			</tr>
 		</tbody>
 	</table>

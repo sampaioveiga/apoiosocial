@@ -1,6 +1,7 @@
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
-		<div class="col-md-2">
+		<div class="navbar-brand">Episódios</div>
+		<div class="col-md-2 navbar-right">
         	<%= link_to "Novo episódio", new_patient_episode_path(@patient), class: 'btn btn-default btn-info navbar-btn' %>
         </div>
 	</div>
@@ -12,7 +13,7 @@
 				<h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href=<%= "#" + episode.id.to_s %>>
 						<%= episode.data %>&nbsp;|
-						<%= episode.user.nome %>
+						<small><%= episode.user.nome %></small>
 						<% if episode.estado %>
 							<b>| Encerrado</b>
 						<% end %>
@@ -26,21 +27,24 @@
 			<% end %>
 				<div class="panel-body">
 					<div class="col-md-12">
-						<div class="col-md-offset-4 col-md-2">
-							<% link_to "Ver notas (#{episode.notes.count})", patient_episode_path(@patient,episode), class: 'btn btn-default btn-xs' %>
-							<button class="btn btn-default btn-xs" data-toggle="modal" data-target=<%= "#" + episode.id.to_s + "_notes" %>>
-								Ver notas (<%= episode.notes.count %>)
-							</button>
-						</div>
-						<div class="col-md-2">
-							<%= link_to "Editar episódio", edit_patient_episode_path(episode.patient, episode), class: 'btn btn-default btn-xs' %>
-						</div>
-						<div class="col-md-2">
-							<%= link_to "Arquivar", patient_episode_archive_path(episode.patient, episode), data: { confirm: "Não será possível fazer alterações futuras ao episódio. Pretende continuar?" }, class: 'btn btn-primary btn-xs' %>
-						</div>
-						<div class="col-md-2">
-							<%= link_to "Eliminar", [episode.patient, episode], method: :delete, data: { confirm: "Esta acção é irreversível. Pretende continuar?" }, class: 'btn btn-danger btn-xs' %>
-						</div>
+						<nav class="navbar navbar-default" role="navigation">
+  							<div class="container-fluid">
+  								<div class="col-md-2 navbar-right">
+  									<%= link_to "Eliminar", [episode.patient, episode], method: :delete, data: { confirm: "Esta acção é irreversível. Pretende continuar?" }, class: 'btn btn-danger navbar-btn' %>
+  								</div>
+  								<div class="col-md-2 navbar-right">
+  									<%= link_to "Arquivar", patient_episode_archive_path(episode.patient, episode), data: { confirm: "Não será possível fazer alterações futuras ao episódio. Pretende continuar?" }, class: 'btn btn-primary navbar-btn' %>
+  								</div>
+  								<div class="col-md-2 navbar-right">
+  									<%= link_to "Editar", edit_patient_episode_path(episode.patient, episode), class: 'btn btn-default navbar-btn' %>
+  								</div>
+  								<div class="col-md-2 navbar-right">
+  									<button class="btn btn-default navbar-btn" data-toggle="modal" data-target=<%= "#" + episode.id.to_s + "_notes" %>>
+										Ver notas (<%= episode.notes.count %>)
+									</button>
+  								</div>
+  							</div>
+  						</nav>
 					</div>
 					<div class="col-md-6">
 						<dl class="dl-horizontal">

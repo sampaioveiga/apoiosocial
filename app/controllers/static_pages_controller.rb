@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
 	def index
 		@episodes = Episode.where(estado: false).order('data DESC').find_all_by_user_id(current_user.id)
 		#@notes = Note.limit(5).order('data DESC')
+		@patients = Patient.limit(3).order('created_at DESC')
 	end
 
 	private

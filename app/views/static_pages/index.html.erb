@@ -1,13 +1,19 @@
 <% provide(:title, "Dashboard") %>
 
-<div class="col-md-2">
+<div class="col-md-3">
 	<h2>
 		<small>Dashboard</small><br />
 		<%= current_user.nome %>
 	</h2>
-	<%= render 'patients/search' %>
+	<%= render 'patients/search' %><br />
+	<legend>Últimos utentes</legend>
+	<ol>
+		<% @patients.each do |patient| %>
+			<li><%= link_to patient.nome, patient, class: 'btn btn-link' %></li>
+		<% end %>
+	</ol>
 </div>
-<div class="col-md-10">
+<div class="col-md-9">
 	<legend>Episódios em curso <span class="badge"><%= @episodes.count %></span></legend>
 	<div class="table-responsive">
 		<table class="table">

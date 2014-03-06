@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140305144931) do
+ActiveRecord::Schema.define(version: 20140306092555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,7 +118,6 @@ ActiveRecord::Schema.define(version: 20140305144931) do
     t.string   "residencia"
     t.integer  "telefone"
     t.integer  "subsystem_id"
-    t.integer  "subsystem_number"
     t.integer  "cartao_de_cidadao"
     t.integer  "numero_identificacao_fiscal"
     t.string   "genero"
@@ -128,6 +127,7 @@ ActiveRecord::Schema.define(version: 20140305144931) do
     t.datetime "updated_at"
     t.string   "email"
     t.integer  "telemovel"
+    t.integer  "subsystem_number",            limit: 8
   end
 
   create_table "pensions", force: true do |t|
