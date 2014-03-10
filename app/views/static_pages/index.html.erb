@@ -7,11 +7,11 @@
 	</h2>
 	<%= render 'patients/search' %><br />
 	<legend>Últimos utentes</legend>
-	<ol>
+	<ul class="list-unstyled">
 		<% @patients.each do |patient| %>
-			<li><%= link_to patient.nome, patient, class: 'btn btn-link' %></li>
+			<li><%= link_to " #{patient.id}. #{patient.nome}", patient %></li>
 		<% end %>
-	</ol>
+	</ul>
 </div>
 
 <div class="col-md-9">
