@@ -27,6 +27,8 @@ class Patient < ActiveRecord::Base
 	validates :numero_identificacao_fiscal,
 		uniqueness: { message: "já existe na base de dados", allow_nil: true },
 		numericality: { message: "só pode conter números", allow_nil: true }
+	validates :niss,
+		numericality: { message: "só pode conter números", allow_nil: true }
 #	validates :email,
 #		format: { with: VALID_EMAIL_REGEX, allow_nil: true, message: "formato inválido" }
 end

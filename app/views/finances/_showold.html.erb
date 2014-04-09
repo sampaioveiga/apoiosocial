@@ -1,0 +1,34 @@
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-brand">Situação económica</div>
+	</div>
+</nav>
+<legend>Atestado de Insuficiência Económica</legend>
+<label>Ocupação</label>
+<% if @patient.ocupacao.empty? %>
+	Não há registo
+<% else %>
+	<%= @patient.ocupacao %>
+<% end %>
+<% @patient.finances.each do |finance| %>
+	<div class="col-md-12">
+		<div class="col-md-3">
+			<label>Origem</label>
+			<%= finance.pension.nome %>
+		</div>
+		<div class="col-md-2">
+			<% if finance.montante.nil? %>
+				&nbsp;
+			<% else %>
+				<%= finance.montante %> €
+			<% end %>
+		</div>
+		<div class="col-md-5">
+			<label>Obs</label>
+			<%= finance.observacoes %>
+		</div>
+		<div class="col-md-2">
+			<%= link_to "Eliminar", [finance.patient, finance], method: :delete, data: { confirm: 'Esta acção é irreversível. Pretende continuar?' }, class: 'btn btn-danger' %>
+		</div>
+	</div>
+<% end %>

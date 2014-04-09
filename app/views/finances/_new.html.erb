@@ -1,17 +1,16 @@
 <%= form_for([@patient, @patient.finances.build], html: { class: 'form-horizontal' }) do |f| %>
-	<legend>Nova fonte de rendimento</legend>
 	<div class="form-group">
-		<%= f.label :pension_id, "Origem", class: 'col-md-2 control-label' %>
-		<div class="col-md-2">
-			<%= f.collection_select(:pension_id, Pension.order('nome'), :id, :nome, { include_blank: true }, { class: 'form-control' } ) %>
+		<%= f.label :insuficiencia_economica, "Atestado?", class: 'col-md-1 control-label' %>
+		<div class="col-md-1">
+			<%= f.check_box :insuficiencia_economica, class: 'form-control' %>
 		</div>
-		<% f.label :montante, "Montante €", class: 'col-md-2 control-label' %>
+		<%= f.label :data_consulta_rnu, "Verificação", class: 'col-md-2 control-label' %>
 		<div class="col-md-2">
-			<%= f.text_field :montante, placeholder: '€€€', class: 'form-control' %>
+			<%= f.text_field :data_consulta_rnu, value: Date.today, class: 'form-control' %>
 		</div>
-		<% f.label :observacoes, class: 'col-md-2 control-label' %>
-		<div class="col-md-4">
-			<%= f.text_field :observacoes, placeholder: 'Observações', class: 'form-control' %>
+		<%= f.label :data_validade, class: 'col-md-2 control-label' %>
+		<div class="col-md-2">
+			<%= f.text_field :data_validade, placeholder: 'aaaa-mm-dd', class: 'form-control' %>
 		</div>
 		<div class="col-md-2">
 			<%= f.submit "Inserir", class: 'btn btn-success navbar-btn' %>

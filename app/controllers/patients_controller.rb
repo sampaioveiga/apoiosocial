@@ -51,7 +51,7 @@ class PatientsController < ApplicationController
 	def search
 		@patients = Patient.where("nome LIKE :prefix", prefix: "%#{params[:search_string]}%").paginate(page: params[:page], :per_page => 30)
 		if @patients.empty?
-			@patients = Patient.where("cartao_de_cidadao = :prefix OR numero_identificacao_fiscal = :prefix OR rnu = :prefix", prefix: "#{params[:search_string]}").paginate(page: params[:page], :per_page => 30)
+			@patients = Patient.where("cartao_de_cidadao = :prefix OR numero_identificacao_fiscal = :prefix OR rnu = :prefix OR niss = :prefix", prefix: "#{params[:search_string]}").paginate(page: params[:page], :per_page => 30)
 		end
 		if @patients.empty?
 			flash[:info] = "A pesquisa não devolveu resultados"
@@ -63,7 +63,7 @@ class PatientsController < ApplicationController
 
 	private
 		def patient_params
-			params.require(:patient).permit(:nome, :data_de_nascimento, :genero, :estado_civil, :habilitacoes_literarias, :residencia, :ocupacao, :telefone, :telemovel, :rnu, :subsystem_id, :subsystem_number, :cartao_de_cidadao, :numero_identificacao_fiscal, :email)
+			params.require(:patient).permit(:nome, :data_de_nascimento, :genero, :estado_civil, :habilitacoes_literarias, :residencia, :ocupacao, :telefone, :telemovel, :rnu, :subsystem_id, :subsystem_number, :cartao_de_cidadao, :numero_identificacao_fiscal, :email, :niss)
 		end
 
 		def set_patient

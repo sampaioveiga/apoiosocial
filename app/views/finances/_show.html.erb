@@ -3,32 +3,35 @@
 		<div class="navbar-brand">Situação económica</div>
 	</div>
 </nav>
-<legend>Fontes de rendimento</legend>
 <label>Ocupação</label>
 <% if @patient.ocupacao.empty? %>
 	Não há registo
 <% else %>
 	<%= @patient.ocupacao %>
 <% end %>
-<% @patient.finances.each do |finance| %>
-	<div class="col-md-12">
-		<div class="col-md-3">
-			<label>Origem</label>
-			<%= finance.pension.nome %>
-		</div>
-		<div class="col-md-2">
-			<% if finance.montante.nil? %>
-				&nbsp;
-			<% else %>
-				<%= finance.montante %> €
-			<% end %>
-		</div>
-		<div class="col-md-5">
-			<label>Obs</label>
-			<%= finance.observacoes %>
-		</div>
-		<div class="col-md-2">
-			<%= link_to "Eliminar", [finance.patient, finance], method: :delete, data: { confirm: 'Esta acção é irreversível. Pretende continuar?' }, class: 'btn btn-danger' %>
-		</div>
-	</div>
-<% end %>
+<legend>Atestado de Insuficiência Económica</legend>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Atestado?</th>
+			<th>Verificação RNU</th>
+			<th>Data de validade</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @patient.finances.each do |finance| %>
+			<tr>
+				<td>
+					<% if finance.insuficiencia_economica %>
+						<b>Sim</b>
+					<% else %>
+						Não
+					<% end %>
+				</td>
+				<td><%= finance.data_consulta_rnu %></td>
+				<td><%= finance.data_validade %></td>
+				<td><%= link_to "Eliminar", [finance.patient, finance], method: :delete, data: { confirm: 'Esta acção é irreversível. Pretende continuar?' }, class: 'btn btn-danger' %></td>
+			</tr>
+	<% end %>
+</table>
